@@ -1,0 +1,6 @@
+C:\Users\mmeira\Development\Projects\LiteContainer\HarkContaniner\obj\Debug\HearkenContaniner.csprojResolveAssemblyReference.cache
+C:\Users\mmeira\Development\Projects\LiteContainer\HarkContaniner\bin\Debug\HearkenContainer.dll.config
+C:\Users\mmeira\Development\Projects\LiteContainer\HarkContaniner\bin\Debug\HearkenContainer.dll
+C:\Users\mmeira\Development\Projects\LiteContainer\HarkContaniner\bin\Debug\HearkenContainer.pdb
+C:\Users\mmeira\Development\Projects\LiteContainer\HarkContaniner\obj\Debug\HearkenContainer.dll
+C:\Users\mmeira\Development\Projects\LiteContainer\HarkContaniner\obj\Debug\HearkenContainer.pdb

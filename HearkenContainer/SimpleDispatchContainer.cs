@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using HearkenContainer.Model;
+using HearkenContainer.Mixins.Model.Collections;
+using HearkenContainer.Notations;
+using System.Reflection;
+
+namespace HearkenContainer
+{
+    public class SimpleDispatchContainer: IHearkenContainer
+    {
+        GroupInfo[] _groups;
+
+        public SimpleDispatchContainer()
+        {
+            _groups = (GroupInfo[])
+                Array.CreateInstance(typeof(GroupInfo), 1);
+        }
+
+        public bool TryResolve(string groupName, out GroupInfo group)
+        {
+            return (group = _groups.BinaryFind(groupName)) != null;
+        }
+
+        public void Add(GroupInfo group)
+        {
+            int index = 0;
+
+            if (_groups.Length < 2)
+            {
+                _groups[0] = group;
+                return;
+            }
+
+            if (_groups.BinarySearch(group.Name, out index))
+            { return; }
+
+            _groups.Insert(~index, group);            
+        }
+
+        public T Get<T>(string groupName = "", Action<int, object> afterCreateAction = null)
+        {
+            var group = 
+                _groups.Foremost(g => 
+                    g.Name == groupName);
+
+            var trigger = group.Triggers.Foremost(
+                tr => typeof(T).IsAssignableFrom(tr.Type));
+
+            return InvokeNAttachAll<T>(group, trigger, afterCreateAction);
+        }
+
+        protected T InvokeNAttachAll<T>(GroupInfo group, TriggerInfo trigger, Action<int, object> afterCreateAction)
+        {
+            var eventsSource =
+                Activator.CreateInstance<T>();
+
+            foreach (var action in group.Actions)
+            {
+                int i, index = 0;
+
+                //If is not found, it will not listen
+                if (action.ListensTo != null && !action.ListensTo.BinarySearch(typeof(T), out i))
+                { continue; }
+
+                /*ELSE: If 
+                 * is not set to any type, it will try with all from group, 
+                 * or 
+                 * it is focused on one type
+                 */
+                var listener =
+                    Activator.CreateInstance(action.Type);
+                                
+                action.Attach(eventsSource, trigger.Events, listener);
+
+                if (afterCreateAction != null)
+                { afterCreateAction(index++, listener); }
+            }
+
+            return eventsSource;
+        }
+    }
+}
