@@ -25,22 +25,38 @@ namespace HearkenContainer.Sources.Model
         }
 
         private static IEnumerable<FunctionInfo> Extract(IEnumerable<MethodInfo> methods, bool isFullyDecorated)
-        {   
-            foreach(var method in methods)
+        {
+            foreach (var method in methods)
             {
-                yield return new FunctionInfo { 
-                    Method = method,
-                    EventName = GetMethodName(isFullyDecorated, method)
-                };
-            }            
+                var attrs =
+                    method.GetCustomAttributes(true).Which(e => e is ActionAttribute);
+
+                if (!isFullyDecorated)
+                {
+                    yield return new FunctionInfo
+                    {
+                        Method = method,
+                        EventName = GetMethodName(isFullyDecorated, method)
+                    };
+                }
+                else
+                {
+                    foreach (var attr in attrs)
+                    {
+                        yield return new FunctionInfo
+                        {
+                            Method = method,
+                            EventName = GetMethodName(isFullyDecorated, method, (ActionAttribute)attr)
+                        };
+                    }
+                }
+            }
         }
 
-        private static string GetMethodName(bool hasAttr, MethodInfo method)
-        {
-            var attr = (ActionAttribute)Attribute.GetCustomAttribute(method, typeof(ActionAttribute));
-
+        private static string GetMethodName(bool hasAttr, MethodInfo method, ActionAttribute actionAttr = null)
+        {            
             return hasAttr ?
-                (string.IsNullOrEmpty(attr.EventName) ? method.Name : attr.EventName) :
+                (string.IsNullOrEmpty(actionAttr.EventName) ? method.Name : actionAttr.EventName) :
                 method.Name;
         }
 
@@ -65,6 +81,9 @@ namespace HearkenContainer.Sources.Model
 
                 var @event =
                     events.Foremost(e => e.Name.Equals(function.EventName));
+
+                if (@event == null) 
+                { throw new EventNotFoundException(function.EventName, function.Method.Name, action.GetType()); }
 
                 var @delegate = Delegate
                     .CreateDelegate(@event.EventHandlerType, action, function.Method.Name);

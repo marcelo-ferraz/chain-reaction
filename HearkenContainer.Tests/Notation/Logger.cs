@@ -11,16 +11,35 @@ namespace Test.Notation
     [ActionHolder]
     public class Logger
     {
-        [Action("Init")]
-        public void ListenToInit(string sentence)
-        {
+        StringBuilder builder = new StringBuilder();
 
+        [Action("Init")]
+        [Action("ListenedTwice")]
+        public void ListenToMoreThanOne(string sentence)
+        {
+            builder.Append(sentence);
+            builder.Append("|");
         }
 
         [Action]
-        public void Middle(string sentence) { }
+        public void ListenedTwice(string sentence)
+        {
+            builder.Append(sentence);
+            builder.Append("|");
+        }
+
+        [Action]
+        public void Middle(string sentence) 
+        {
+            builder.Append(sentence);
+            builder.Append("|");
+        }
         
         [Action]
-        public void End(string sentence) { }
+        public void End(string sentence)
+        {
+            builder.Append(sentence);
+            builder.Append("|");
+        }
     }
 }

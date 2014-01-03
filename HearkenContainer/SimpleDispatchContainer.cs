@@ -39,7 +39,7 @@ namespace HearkenContainer
             _groups.Insert(~index, group);            
         }
 
-        public T Get<T>(string groupName = "", Action<int, object> afterCreateAction = null)
+        public T Invoke<T>(Action<object> afterLoadAction = null, string groupName = "")
         {
             var group = 
                 _groups.Foremost(g => 
@@ -48,17 +48,17 @@ namespace HearkenContainer
             var trigger = group.Triggers.Foremost(
                 tr => typeof(T).IsAssignableFrom(tr.Type));
 
-            return InvokeNAttachAll<T>(group, trigger, afterCreateAction);
+            return InvokeNAttachAll<T>(group, trigger, afterLoadAction);
         }
 
-        protected T InvokeNAttachAll<T>(GroupInfo group, TriggerInfo trigger, Action<int, object> afterCreateAction)
+        protected T InvokeNAttachAll<T>(GroupInfo group, TriggerInfo trigger, Action<object> afterLoadAction)
         {
             var eventsSource =
                 Activator.CreateInstance<T>();
 
             foreach (var action in group.Actions)
             {
-                int i, index = 0;
+                int i;
 
                 //If is not found, it will not listen
                 if (action.ListensTo != null && !action.ListensTo.BinarySearch(typeof(T), out i))
@@ -74,8 +74,8 @@ namespace HearkenContainer
                                 
                 action.Attach(eventsSource, trigger.Events, listener);
 
-                if (afterCreateAction != null)
-                { afterCreateAction(index++, listener); }
+                if (afterLoadAction != null)
+                { afterLoadAction(listener); }
             }
 
             return eventsSource;

@@ -5,9 +5,8 @@ using System.Text;
 
 namespace HearkenContainer.Notations
 {
-    [AttributeUsage(AttributeTargets.Event)]
+    [AttributeUsage(AttributeTargets.Event, AllowMultiple=false)]
     public class TriggerAttribute : Attribute
     {
-
     }
 }

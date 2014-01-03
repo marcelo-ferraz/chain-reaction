@@ -60,7 +60,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HarkContaniner\HearkenContaniner.csproj">
+    <ProjectReference Include="..\HearkenContainer\HearkenContaniner.csproj">
       <Project>{5b7127e7-7b42-4571-8391-8241f45a2914}</Project>
       <Name>HearkenContaniner</Name>
     </ProjectReference>

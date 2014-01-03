@@ -22,3 +22,11 @@ C:\Users\mmeira\Development\Projects\LiteContainer\Test\bin\Debug\Test.exe
 C:\Users\mmeira\Development\Projects\LiteContainer\Test\bin\Debug\Test.pdb
 C:\Users\mmeira\Development\Projects\LiteContainer\Test\bin\Debug\HearkenContainer.dll
 C:\Users\mmeira\Development\Projects\LiteContainer\Test\bin\Debug\HearkenContainer.pdb
+C:\Users\mmeira\Development\Projects\HearkenContainer\HearkenContainer.Tests\bin\Debug\Test.exe.config
+C:\Users\mmeira\Development\Projects\HearkenContainer\HearkenContainer.Tests\bin\Debug\Test.exe
+C:\Users\mmeira\Development\Projects\HearkenContainer\HearkenContainer.Tests\bin\Debug\Test.pdb
+C:\Users\mmeira\Development\Projects\HearkenContainer\HearkenContainer.Tests\bin\Debug\HearkenContainer.dll
+C:\Users\mmeira\Development\Projects\HearkenContainer\HearkenContainer.Tests\bin\Debug\HearkenContainer.pdb
+C:\Users\mmeira\Development\Projects\HearkenContainer\HearkenContainer.Tests\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\mmeira\Development\Projects\HearkenContainer\HearkenContainer.Tests\obj\Debug\Test.exe
+C:\Users\mmeira\Development\Projects\HearkenContainer\HearkenContainer.Tests\obj\Debug\Test.pdb

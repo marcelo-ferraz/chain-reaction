@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Configure.cs" />
+    <Compile Include="Configuration\ThisExpression.cs" />
+    <Compile Include="Infrastructure\Parallel.cs" />
     <Compile Include="Mixins\Model\Collections\ArrayMixins.cs" />
     <Compile Include="Model\MethodInfo.cs" />
     <Compile Include="SimpleDispatchContainer.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IHearkenContainer.cs" />
     <Compile Include="Sources\ISource.cs" />
+    <Compile Include="Sources\Model\EventNotFoundException.cs" />
     <Compile Include="Sources\Model\NotedActionInfo.cs" />
     <Compile Include="Sources\Model\NotedTriggerInfo.cs" />
     <Compile Include="Sources\NotationSource.cs" />

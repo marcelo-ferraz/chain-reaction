@@ -2,7 +2,7 @@
 
 namespace HearkenContainer.Notations
 {
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple=true)]
     public class ActionAttribute: Attribute
     {
         public ActionAttribute()

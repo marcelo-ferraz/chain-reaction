@@ -8,6 +8,6 @@ namespace HearkenContainer
 
         void Add(GroupInfo group);
 
-        T Get<T>(string groupName = "", Action<int, object> afterCreateAction = null);
+        T Invoke<T>(Action<object> afterLoadListener = null, string groupName = "");
     }
 }

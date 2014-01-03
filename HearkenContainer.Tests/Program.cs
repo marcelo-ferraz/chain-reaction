@@ -16,9 +16,13 @@ namespace Test
             var con = Configure
                 .This(new SimpleDispatchContainer())
                 .Source(Using.Annotations(typeof(Program).Assembly))
+                //.Source(Using.AppConfig())
                 .Container;
+            
+            Logger logger = null;
 
-            var uProcess = con.Get<UselessProcessing>();
+            var uProcess = con.Invoke<UselessProcessing>(
+                listener => logger = listener as Logger);
 
             uProcess.TriggerThemAll();
         }

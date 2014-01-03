@@ -1,36 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HearkenContainer.Sources;
-
-namespace HearkenContainer.Configuration
+﻿namespace HearkenContainer.Configuration
 {
-    public sealed class Configure
+    public static class Configure
     {
-        private Configure() { }
-
-        public IHearkenContainer Container { get; set; }
-
-        public static Configure This()
+        public static ThisExpression This()
         {
-            var instance = new Configure();
+            var instance = new ThisExpression();
             instance.Container = new SimpleDispatchContainer();
             return instance;
         }
 
-        public static Configure This(IHearkenContainer container)
+        public static ThisExpression This(IHearkenContainer container)
         {
-            var instance = new Configure();
+            var instance = new ThisExpression();
             instance.Container = container;
             return instance;
-        }
-
-        public Configure Source(ISource source)
-        {
-            source.Save(Container);
-
-            return this;
         }
     }
 }
