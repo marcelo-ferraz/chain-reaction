@@ -8,8 +8,8 @@
     <ProjectGuid>{C1002021-DB32-445E-8A32-E7363765B184}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Test</RootNamespace>
-    <AssemblyName>Test</AssemblyName>
+    <RootNamespace>HearkenContaniner.Tests</RootNamespace>
+    <AssemblyName>HearkenContaniner.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -51,8 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Notation\Logger.cs" />
-    <Compile Include="Notation\UselessProcessing.cs" />
+    <Compile Include="Model\AppConfig\MoreUselessProcessing.cs" />
+    <Compile Include="Model\AppConfig\Logger.cs" />
+    <Compile Include="Model\AppConfig\UselessProcessing.cs" />
+    <Compile Include="Model\Notation\MoreUselessProcessing.cs" />
+    <Compile Include="Model\Notation\Logger.cs" />
+    <Compile Include="Model\Notation\UselessProcessing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

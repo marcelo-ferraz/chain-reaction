@@ -11,6 +11,12 @@
 
         public static ThisExpression This(IHearkenContainer container)
         {
+
+            var config =
+                HearkenContainer.AppConfig.HearkenContainerSection.Self;
+
+
+
             var instance = new ThisExpression();
             instance.Container = container;
             return instance;

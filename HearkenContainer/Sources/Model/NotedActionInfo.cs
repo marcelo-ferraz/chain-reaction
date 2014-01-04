@@ -82,8 +82,8 @@ namespace HearkenContainer.Sources.Model
                 var @event =
                     events.Foremost(e => e.Name.Equals(function.EventName));
 
-                if (@event == null) 
-                { throw new EventNotFoundException(function.EventName, function.Method.Name, action.GetType()); }
+                if (@event == null) { continue; }
+                //{ throw new EventNotFoundException(function.EventName, function.Method.Name, action.GetType()); }
 
                 var @delegate = Delegate
                     .CreateDelegate(@event.EventHandlerType, action, function.Method.Name);

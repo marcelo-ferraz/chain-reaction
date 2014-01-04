@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppConfig\CollectionOf.cs" />
+    <Compile Include="AppConfig\Element.cs" />
+    <Compile Include="AppConfig\InterceptorElement.cs" />
+    <Compile Include="AppConfig\InterceptorElementCollection.cs" />
+    <Compile Include="AppConfig\HearkenContainerSection.cs" />
     <Compile Include="Configuration\Configure.cs" />
     <Compile Include="Configuration\ThisExpression.cs" />
     <Compile Include="Infrastructure\Parallel.cs" />

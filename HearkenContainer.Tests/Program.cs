@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using HearkenContainer;
 using HearkenContainer.Configuration;
-using Test.Notation;
+using HearkenContainer.Tests.Model.Notation;
 
-
-namespace Test
+namespace HearkenContainer.Tests
 {
     class Program
     {
@@ -19,12 +18,19 @@ namespace Test
                 //.Source(Using.AppConfig())
                 .Container;
             
-            Logger logger = null;
+             Logger logger1 = null;
 
-            var uProcess = con.Invoke<UselessProcessing>(
-                listener => logger = listener as Logger);
+            var uselessProcess = con.Invoke<UselessProcessing>(
+                listener => logger1 = listener as Logger);
 
-            uProcess.TriggerThemAll();
+            uselessProcess.Start();
+
+            Logger logger2 = null;
+
+            var moreUselessProcess = con.Invoke < MoreUselessProcessing > (
+                   listener => logger2 = listener as Logger);
+            
+            moreUselessProcess.Start();
         }
     }
 }
