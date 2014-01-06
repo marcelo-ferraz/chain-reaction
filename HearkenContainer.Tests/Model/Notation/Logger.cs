@@ -8,34 +8,34 @@ using HearkenContainer.Notations;
 
 namespace HearkenContainer.Tests.Model.Notation
 {
-    [ActionHolder]
+    [Action]
     public class Logger
     {
         StringBuilder builder = new StringBuilder();
 
-        [Action("Init")]
-        [Action("ListenedTwice")]
+        [Function("Init")]
+        [Function("ListenedTwice")]
         public void ListenToMoreThanOne(string sentence)
         {
             builder.Append(sentence);
             builder.Append("|");
         }
 
-        [Action]
+        [Function]
         public void ListenedTwice(string sentence)
         {
             builder.Append(sentence);
             builder.Append("|");
         }
 
-        [Action]
+        [Function]
         public void Middle(string sentence) 
         {
             builder.Append(sentence);
             builder.Append("|");
         }
         
-        [Action]
+        [Function]
         public void End(string sentence)
         {
             builder.Append(sentence);

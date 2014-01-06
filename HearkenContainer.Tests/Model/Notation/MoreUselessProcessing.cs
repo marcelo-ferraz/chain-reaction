@@ -6,7 +6,7 @@ using HearkenContainer.Notations;
 
 namespace HearkenContainer.Tests.Model.Notation
 {
-    [TriggerSource]
+    [Source]
     public class MoreUselessProcessing : UselessProcessing
     {        
         public event Action<String> Ignored;

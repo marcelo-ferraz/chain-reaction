@@ -1,18 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace HearkenContainer.Notations
 {
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple=true)]
-    public class ActionAttribute: Attribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
+    public class ActionAttribute : EventRelatedAttribute
     {
-        public ActionAttribute()
-        { }
-
-        public ActionAttribute(string eventName)
-        {
-            EventName = eventName;
-        }
-
-        public string EventName { get; set; }
+        public Type Interceptor { get; set; }
+        public Type[] ListensTo { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace HearkenContainer.Sources.Model
         /// <returns></returns>
         protected override IEnumerable<EventInfo> Extract()
         {
-            if (!Type.IsDefined(typeof(TriggerSourceAttribute), true)) { return null; }
+            if (!Type.IsDefined(typeof(SourceAttribute), true)) { return null; }
 
             IEnumerable<EventInfo> events =
                 Type.GetEvents(Flags);

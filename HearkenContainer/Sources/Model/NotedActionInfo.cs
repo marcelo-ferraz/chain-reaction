@@ -14,10 +14,10 @@ namespace HearkenContainer.Sources.Model
             var methods = 
                 this.Type.GetMethods();                
             
-            if (methods.Foremost(e => e.IsDefined(typeof(ActionAttribute), true)) != null)
+            if (methods.Foremost(e => e.IsDefined(typeof(FunctionAttribute), true)) != null)
             {
                 return Extract(methods.Which(e => 
-                    e.IsDefined(typeof(ActionAttribute), true)), 
+                    e.IsDefined(typeof(FunctionAttribute), true)), 
                     true);
             }
             
@@ -29,7 +29,7 @@ namespace HearkenContainer.Sources.Model
             foreach (var method in methods)
             {
                 var attrs =
-                    method.GetCustomAttributes(true).Which(e => e is ActionAttribute);
+                    method.GetCustomAttributes(true).Which(e => e is FunctionAttribute);
 
                 if (!isFullyDecorated)
                 {
@@ -46,14 +46,14 @@ namespace HearkenContainer.Sources.Model
                         yield return new FunctionInfo
                         {
                             Method = method,
-                            EventName = GetMethodName(isFullyDecorated, method, (ActionAttribute)attr)
+                            EventName = GetMethodName(isFullyDecorated, method, (FunctionAttribute)attr)
                         };
                     }
                 }
             }
         }
 
-        private static string GetMethodName(bool hasAttr, MethodInfo method, ActionAttribute actionAttr = null)
+        private static string GetMethodName(bool hasAttr, MethodInfo method, FunctionAttribute actionAttr = null)
         {            
             return hasAttr ?
                 (string.IsNullOrEmpty(actionAttr.EventName) ? method.Name : actionAttr.EventName) :
@@ -94,9 +94,9 @@ namespace HearkenContainer.Sources.Model
 
         protected override Type[] GetWhoShouldBeListened()
         {
-            var attr = (ActionHolderAttribute)
+            var attr = (ActionAttribute)
                 Type.GetCustomAttributes(true)
-                .Foremost(a => a is ActionHolderAttribute);
+                .Foremost(a => a is ActionAttribute);
 
             return attr.ListensTo;
         }

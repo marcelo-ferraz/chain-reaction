@@ -13,7 +13,7 @@ namespace HearkenContainer.AppConfig
         }
 
         [ConfigurationProperty(CollectionOf.Groups.NodeName)]
-        public CollectionOf.Groups Items
+        public CollectionOf.Groups Groups
         {
             get { return ((CollectionOf.Groups)(base[CollectionOf.Groups.NodeName])); }
         }

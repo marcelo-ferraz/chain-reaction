@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -22,6 +23,14 @@ namespace HearkenContainer.AppConfig
             protected override ConfigurationElement CreateNewElement()
             {
                 return new T();
+            }
+
+            public new IEnumerator<T> GetEnumerator()
+            {
+                foreach (var item in ((IEnumerable)this))
+                {
+                    yield return (T)item;
+                }
             }
         }
 

@@ -6,7 +6,7 @@ using System.Text;
 namespace HearkenContainer.Notations
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class TriggerSourceAttribute : EventRelatedAttribute
+    public class SourceAttribute : EventRelatedAttribute
     {
 
     }

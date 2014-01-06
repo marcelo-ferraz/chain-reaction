@@ -48,20 +48,20 @@ namespace HearkenContainer.Sources
             {
                 var type = Types[i];
 
-                if (type.IsDefined(typeof(TriggerSourceAttribute), true))
+                if (type.IsDefined(typeof(SourceAttribute), true))
                 {
                     var attr =
-                        Get<TriggerSourceAttribute>(type);
+                        Get<SourceAttribute>(type);
 
                     group = GetGroup(attr.Group, container);
 
                     group.Triggers.Add(new NotedTriggerInfo() { Type = type });
                 }
 
-                if (type.IsDefined(typeof(ActionHolderAttribute), true))
+                if (type.IsDefined(typeof(ActionAttribute), true))
                 {
                     var attr =
-                        Get<ActionHolderAttribute>(type);
+                        Get<ActionAttribute>(type);
 
                     group = GetGroup(attr.Group, container);
 
