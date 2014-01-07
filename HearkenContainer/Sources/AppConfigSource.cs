@@ -6,14 +6,20 @@ namespace HearkenContainer.Sources
 {
     public class AppConfigSource : DefaultSource
     {
-        internal AppConfigSource() { }
+        internal AppConfigSource() 
+        { }
 
-        internal object Section;
+        internal AppConfigSource(HearkenContainerSection section) 
+        {
+            Section = section;
+        }
+
+        internal HearkenContainerSection Section;
 
         public override void Save(IHearkenContainer container)
         {
             var groups = 
-                ((HearkenContainerSection)(Section ?? HearkenContainerSection.Self)).Groups;
+                (Section ?? HearkenContainerSection.Self).Groups;
             
             foreach (var configGroup in groups)
             {

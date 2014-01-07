@@ -19,7 +19,7 @@ namespace HearkenContainer.Sources.Model
 
         protected override IEnumerable<EventInfo> Extract()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
