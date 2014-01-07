@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using HearkenContainer.Model.Collections;
+using HearkenContainer.Mixins.Model.Collections;
+using System.Runtime;
 
 namespace HearkenContainer.Model
 {
 
     public class GroupInfo: IComparable
     {
-        private string groupName;
-
         internal GroupInfo() { }
 
-        public GroupInfo(string key)
+        public GroupInfo(string name)
         {
-            this.Name = key;
-            Triggers = new List<TriggerInfo>();
+            this.Name = name;
+            Sources = new List<SourceInfo>();
             Actions = new List<ActionInfo>();
         }
 
@@ -26,7 +26,7 @@ namespace HearkenContainer.Model
         /// <summary>
         /// 
         /// </summary>
-        public IList<TriggerInfo> Triggers { get; set; }
+        public IList<SourceInfo> Sources { get; set; }
 
         /// <summary>
         /// Listenters that will be executed as soon as necessary
@@ -37,6 +37,29 @@ namespace HearkenContainer.Model
         /// Interceptors, responsible for interfering in one or all actions
         /// </summary>
         public InterceptorList Interceptors { get; set; }
+
+        [TargetedPatchingOptOut("Performance required")]
+        private T TryGet<T>(Type type, IList<T> tees, Func<T> createT)
+            where T : IHasTypedInfo
+        {
+            var tee = tees
+                .Foremost(t => type == t.Type);
+
+            if (tee == null)
+            { tees.Add(tee = createT()); }
+
+            return tee;
+        }
+
+        public ActionInfo TryGetAction(Type type, Func<ActionInfo> createAction)
+        { 
+            return TryGet<ActionInfo>(type, Actions, createAction);
+        }
+
+        public SourceInfo TryGetSource(Type type, Func<SourceInfo> createSource)
+        {
+            return TryGet<SourceInfo>(type, Sources, createSource);
+        }
 
         public int CompareTo(object obj)
         {

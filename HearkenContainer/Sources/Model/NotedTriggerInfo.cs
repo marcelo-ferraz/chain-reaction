@@ -11,7 +11,7 @@ namespace HearkenContainer.Sources.Model
     /// <summary>
     /// Implemented to work with trigger classes decoreted wuth attributes
     /// </summary>
-    public class NotedTriggerInfo: TriggerInfo
+    public class NotedTriggerInfo: SourceInfo
     {
         /// <summary>
         /// Extracts the set of events from the type given

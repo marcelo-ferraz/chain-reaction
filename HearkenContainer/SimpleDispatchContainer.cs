@@ -45,13 +45,13 @@ namespace HearkenContainer
                 _groups.Foremost(g => 
                     g.Name == groupName);
 
-            var trigger = group.Triggers.Foremost(
+            var trigger = group.Sources.Foremost(
                 tr => typeof(T).IsAssignableFrom(tr.Type));
 
             return InvokeNAttachAll<T>(group, trigger, afterLoadAction);
         }
 
-        protected T InvokeNAttachAll<T>(GroupInfo group, TriggerInfo trigger, Action<object> afterLoadAction)
+        protected T InvokeNAttachAll<T>(GroupInfo group, SourceInfo trigger, Action<object> afterLoadAction)
         {
             var eventsSource =
                 Activator.CreateInstance<T>();

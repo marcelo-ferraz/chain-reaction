@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace HearkenContainer.Model
 {
-    public abstract class TriggerInfo
+    public abstract class SourceInfo: IHasTypedInfo
     {
         private IEnumerable<EventInfo> _events;
         public BindingFlags Flags { get; set; }
@@ -15,7 +15,7 @@ namespace HearkenContainer.Model
             get { return (_events ?? (_events = Extract())); }            
         }
 
-        public TriggerInfo()
+        public SourceInfo()
         {
             Flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly;
         }

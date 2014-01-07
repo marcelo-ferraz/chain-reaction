@@ -1,58 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using HearkenContainer.Model;
-using HearkenContainer.Notations;
-using HearkenContainer.Sources.Model;
-using HearkenContainer.Mixins.Model.Collections;
 using HearkenContainer.AppConfig;
+using HearkenContainer.Sources.Model;
 
 namespace HearkenContainer.Sources
 {
-    public class AppConfigSource : ISource
+    public class AppConfigSource : DefaultSource
     {
         internal AppConfigSource() { }
 
         internal object Section;
 
-        public void Save(IHearkenContainer container)
+        public override void Save(IHearkenContainer container)
         {
             var groups = 
                 ((HearkenContainerSection)(Section ?? HearkenContainerSection.Self)).Groups;
             
-            foreach (var group in groups)
+            foreach (var configGroup in groups)
             {
-                foreach (var src in group.Sources)
-                {
-                    var source = 
-                        ParseNSave(container, src);
+                var group =
+                    GetGroup(configGroup.Name, container);
 
-                    if (source.Triggers.Count < 1)
-                    { SaveAllTriggers(container, source); }
-                    else
-                    { ParseNSave(container, source.Triggers); }
+                foreach (var source in configGroup.Sources)
+                {
+                    Type type = null;
+                    try
+                    { type = Type.GetType(source.Type); }
+                    catch
+                    { throw new SourceNotFoundException(source.Type); }
+
+                    group.TryGetSource(
+                        type,
+                        () =>
+                            new AppConfigSourceInfo(Type.GetType(source.Type), source.Triggers));
                 }
 
-                foreach (var act in group.Actions)
+                foreach (var action in configGroup.Actions)
                 {
-                    var action =
-                        ParseNSave(container, act);
+                    Type type = null;
+                    try
+                    { type = Type.GetType(action.Type); }
+                    catch 
+                    { throw new ActionNotFoundException(action.Type); }
 
-                    if (action.Functions.Count < 1)
-                    { SaveAllFunctions(container, action); }
-                    else
-                    { ParseNSave(container, action.Functions); }
+                    group.TryGetAction(
+                        type,
+                        () =>
+                            new AppConfigActionInfo(type, action.Functions));
+                    
                 }
 		    }            
-        }
-
-        private ActionInfo ParseNSave(IHearkenContainer container, Element.Action cfgAction)
-        {
-            throw new NotImplementedException();
-        }
-
-        private FunctionInfo ParseNSave(IHearkenContainer container, Element.Source cfgSource)
-        {
-            throw new NotImplementedException();
         }
     }
 }

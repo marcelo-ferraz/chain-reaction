@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HearkenContainer.Sources
+namespace HearkenContainer.Model
 {
-    class BaseSource
+    public interface IHasTypedInfo
     {
+        Type Type { get; set; }
     }
 }

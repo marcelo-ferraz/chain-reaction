@@ -55,6 +55,7 @@
     <Compile Include="Configuration\ThisExpression.cs" />
     <Compile Include="Infrastructure\Parallel.cs" />
     <Compile Include="Mixins\Model\Collections\ArrayMixins.cs" />
+    <Compile Include="Model\IHasTypedInfo.cs" />
     <Compile Include="Model\MethodInfo.cs" />
     <Compile Include="SimpleDispatchContainer.cs" />
     <Compile Include="Model\Collections\HarkGroupList.cs" />
@@ -65,19 +66,24 @@
     <Compile Include="Model\ActionInfo.cs" />
     <Compile Include="Model\TriggerInfo.cs" />
     <Compile Include="Notations\BaseEventRelatedAttribute.cs" />
-    <Compile Include="Notations\TriggerSourceAttribute.cs" />
+    <Compile Include="Notations\SourceAttribute.cs" />
     <Compile Include="Notations\InterceptorAttribute.cs" />
-    <Compile Include="Notations\ActionHolderAttribute.cs" />
     <Compile Include="Notations\ActionAttribute.cs" />
+    <Compile Include="Notations\FunctionAttribute.cs" />
     <Compile Include="Notations\TriggerAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IHearkenContainer.cs" />
+    <Compile Include="Sources\Model\ActionNotFoundException.cs" />
+    <Compile Include="Sources\AppConfigSource.cs" />
+    <Compile Include="Sources\DefaultSource.cs" />
     <Compile Include="Sources\ISource.cs" />
-    <Compile Include="Sources\Model\EventNotFoundException.cs" />
+    <Compile Include="Sources\Model\AppConfigActionInfo.cs" />
+    <Compile Include="Sources\Model\AppConfigSourceInfo.cs" />
     <Compile Include="Sources\Model\NotedActionInfo.cs" />
     <Compile Include="Sources\Model\NotedTriggerInfo.cs" />
     <Compile Include="Sources\NotationSource.cs" />
     <Compile Include="Configuration\Using.cs" />
+    <Compile Include="Sources\Model\SourceNotFoundException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

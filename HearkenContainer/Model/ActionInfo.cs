@@ -6,7 +6,7 @@ using System.Text;
 
 namespace HearkenContainer.Model
 {
-    public abstract class ActionInfo
+    public abstract class ActionInfo: IHasTypedInfo
     {
         private IEnumerable<FunctionInfo> _methods;
         private Type[] _listensTo;
