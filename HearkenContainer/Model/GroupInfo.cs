@@ -39,26 +39,38 @@ namespace HearkenContainer.Model
         public InterceptorList Interceptors { get; set; }
 
         [TargetedPatchingOptOut("Performance required")]
-        private T TryGet<T>(Type type, IList<T> tees, Func<T> createT)
+        private T TryGet<T>(Type type, IList<T> tees, Func<int, T, T> doWhenFound, Func<T> createT)
             where T : IHasTypedInfo
         {
+            int index = 0;
             var tee = tees
-                .Foremost(t => type == t.Type);
+                .Foremost((i, t) => {
+                    index = i;
+                    return type == t.Type;
+                });
 
-            if (tee == null)
-            { tees.Add(tee = createT()); }
+            T val = default(T);
 
-            return tee;
+            if (tee.Value == null)
+            {
+                tees.Add(val = createT()); 
+            }
+            else 
+            {
+                doWhenFound(tee.Key, tee.Value);
+            }
+
+            return val;
         }
 
-        public ActionInfo TryGetAction(Type type, Func<ActionInfo> createAction)
-        { 
-            return TryGet<ActionInfo>(type, Actions, createAction);
-        }
-
-        public SourceInfo TryGetSource(Type type, Func<SourceInfo> createSource)
+        public ActionInfo TryGetAction(Type type, Func<int, ActionInfo, ActionInfo> doWhenFound, Func<ActionInfo> createAction)
         {
-            return TryGet<SourceInfo>(type, Sources, createSource);
+            return TryGet<ActionInfo>(type, Actions, doWhenFound, createAction);
+        }
+
+        public SourceInfo TryGetSource(Type type, Func<int, SourceInfo, SourceInfo> doWhenFound, Func<SourceInfo> createSource)
+        {
+            return TryGet<SourceInfo>(type, Sources, doWhenFound, createSource);
         }
 
         public int CompareTo(object obj)

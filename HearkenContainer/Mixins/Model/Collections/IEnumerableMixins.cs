@@ -14,6 +14,7 @@ namespace HearkenContainer.Mixins.Model.Collections
         /// <param name="self"></param>
         /// <param name="predicate"></param>
         /// <returns></returns>
+        [TargetedPatchingOptOut("Performance needed")]
         public static T Foremost<T>(this IEnumerable<T> self, Func<T, bool> predicate)
         {
             foreach (var item in self)
@@ -25,11 +26,28 @@ namespace HearkenContainer.Mixins.Model.Collections
         }
 
         /// <summary>
+        /// Retrieves the first item, of a given enumerabled object
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="self"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        [TargetedPatchingOptOut("Performance needed")]
+        public static KeyValuePair<int, T> Foremost<T>(this IEnumerable<T> self, Func<int, T, bool> predicate)
+        {
+            int i = 0;
+            var value = 
+                self.Foremost(item => predicate(i++, item));
+            return new KeyValuePair<int, T>(i, value);
+        }
+
+        /// <summary>
         /// Applies to each item, of a given enumerabled object, an action
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="self"></param>
         /// <param name="do"></param>
+        [TargetedPatchingOptOut("Performance needed")]
         public static void Each<T>(this IEnumerable<T> self, Action<int, T> @do)
         {
             int i = 0;
@@ -45,6 +63,7 @@ namespace HearkenContainer.Mixins.Model.Collections
         /// <typeparam name="T"></typeparam>
         /// <param name="self"></param>
         /// <param name="do"></param>
+        [TargetedPatchingOptOut("Performance needed")]
         public static void Each<T>(this IEnumerable<T> self, Action<T> @do)
         {
             self.Each((i, item) => @do(item));
@@ -57,6 +76,7 @@ namespace HearkenContainer.Mixins.Model.Collections
         /// <param name="self"></param>
         /// <param name="predicate"></param>
         /// <returns></returns>
+        [TargetedPatchingOptOut("Performance needed")]
         public static IEnumerable<T> Which<T>(this IEnumerable<T> self, Func<T, bool> predicate)
         {
             foreach (var item in self)
@@ -72,6 +92,7 @@ namespace HearkenContainer.Mixins.Model.Collections
         /// <typeparam name="T"></typeparam>
         /// <param name="self"></param>
         /// <returns></returns>
+        [TargetedPatchingOptOut("Performance needed")]
         public static int Size<T>(this IEnumerable<T> self)
         {
             return Size(self, null);
@@ -84,6 +105,7 @@ namespace HearkenContainer.Mixins.Model.Collections
         /// <param name="self"></param>
         /// <param name="predicate"></param>
         /// <returns></returns>
+        [TargetedPatchingOptOut("Performance needed")]
         public static int Size<T>(this IEnumerable<T> self, Func<T, bool> predicate)
         {
             int i = 0;

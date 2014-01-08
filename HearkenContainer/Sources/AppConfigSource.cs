@@ -36,6 +36,8 @@ namespace HearkenContainer.Sources
 
                     group.TryGetSource(
                         type,
+                        (i, src) => 
+                            new AppConfigSourceInfo(src, source.Triggers),
                         () =>
                             new AppConfigSourceInfo(Type.GetType(source.Type), source.Triggers));
                 }
@@ -50,8 +52,10 @@ namespace HearkenContainer.Sources
 
                     group.TryGetAction(
                         type,
+                        (i, src) =>
+                            new AppConfigActionInfo(src, action),
                         () =>
-                            new AppConfigActionInfo(type, action.Functions));
+                            new AppConfigActionInfo(type, action));
                     
                 }
 		    }            

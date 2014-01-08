@@ -66,11 +66,11 @@ namespace HearkenContainer.AppConfig
         /// </summary>
         public class Action : Element.Typed
         {
-            [ConfigurationProperty("eventSource", IsKey = false, IsRequired = false)]
-            public string EventSource
+            [ConfigurationProperty("source", IsKey = false, IsRequired = false)]
+            public string Source
             {
-                get { return Get<string>("eventSource"); }
-                set { base["eventSource"] = value; }
+                get { return Get<string>("source"); }
+                set { base["source"] = value; }
             }
 
             [ConfigurationProperty(CollectionOf.Functions.NodeName, IsKey = false)]

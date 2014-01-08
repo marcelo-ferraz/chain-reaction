@@ -64,7 +64,7 @@
     <Compile Include="Model\GroupInfo.cs" />
     <Compile Include="Model\InterceptorInfo.cs" />
     <Compile Include="Model\ActionInfo.cs" />
-    <Compile Include="Model\TriggerInfo.cs" />
+    <Compile Include="Model\SourceInfo.cs" />
     <Compile Include="Notations\BaseEventRelatedAttribute.cs" />
     <Compile Include="Notations\SourceAttribute.cs" />
     <Compile Include="Notations\InterceptorAttribute.cs" />

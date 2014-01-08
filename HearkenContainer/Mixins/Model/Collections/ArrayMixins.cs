@@ -57,5 +57,10 @@ namespace HearkenContainer.Mixins.Model.Collections
             array[index] = val;
             return array;
         }
+
+        internal static T[] Create<T>(int length = 0)
+        {
+            return (T[])Array.CreateInstance(typeof(T), length);
+        }
     }
 }
