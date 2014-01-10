@@ -1,4 +1,4 @@
-﻿using HearkenContainer.Sources;
+﻿using HearkenContainer.Origins;
 
 namespace HearkenContainer.Configuration
 {
@@ -6,7 +6,7 @@ namespace HearkenContainer.Configuration
     {
         public IHearkenContainer Container { get; set; }
         
-        public ThisExpression Source(ISource source)
+        public ThisExpression Source(IOrigin source)
         {
             source.Save(Container);
 

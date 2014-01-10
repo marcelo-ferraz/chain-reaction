@@ -45,10 +45,10 @@ namespace HearkenContainer
                 _groups.Foremost(g => 
                     g.Name == groupName);
 
-            var trigger = group.Sources.Foremost(
+            var source = group.Sources.Foremost(
                 tr => typeof(T).IsAssignableFrom(tr.Type));
 
-            return InvokeNAttachAll<T>(group, trigger, afterLoadAction);
+            return InvokeNAttachAll<T>(group, source, afterLoadAction);
         }
 
         protected T InvokeNAttachAll<T>(GroupInfo group, SourceInfo trigger, Action<object> afterLoadAction)

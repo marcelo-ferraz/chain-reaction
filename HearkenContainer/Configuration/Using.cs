@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using HearkenContainer.Sources;
+using HearkenContainer.Origins;
 
 namespace HearkenContainer.Configuration
 {
@@ -10,10 +10,10 @@ namespace HearkenContainer.Configuration
         /// </summary>
         /// <param name="assembly"></param>
         /// <returns></returns>
-        public static NotationSource Annotations(params Type[] types)
+        public static NotationOrigin Annotations(params Type[] types)
         {
             var source = 
-                new NotationSource();
+                new NotationOrigin();
             
             source.Types.AddRange(types);
 
@@ -25,10 +25,10 @@ namespace HearkenContainer.Configuration
         /// </summary>
         /// <param name="assemblies"></param>
         /// <returns></returns>
-        public static NotationSource Annotations(params Assembly[] assemblies)
+        public static NotationOrigin Annotations(params Assembly[] assemblies)
         {
             var source = 
-                new NotationSource();
+                new NotationOrigin();
 
             for (int i = 0; i < assemblies.Length; i++)
             {
@@ -36,6 +36,11 @@ namespace HearkenContainer.Configuration
             }
 
             return source;
+        }
+
+        public static IOrigin AppConfig()
+        {
+            return new AppConfigOrigin();
         }
     }
 }

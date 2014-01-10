@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using HearkenContainer.Model;
 using HearkenContainer.Mixins.Model.Collections;
+using HearkenContainer.Model;
 
-namespace HearkenContainer.Sources.Model
+namespace HearkenContainer.Origins.Model
 {
     public class AppConfigActionInfo : ActionInfo
     {
@@ -18,22 +17,12 @@ namespace HearkenContainer.Sources.Model
             this._cfgAction = action;
         }
 
-        public AppConfigActionInfo(ActionInfo src, AppConfig.Element.Action action)
+        public AppConfigActionInfo(ActionInfo previousAction, AppConfig.Element.Action action)
         {
-            this.Type = src.Type;
+            this.Type = previousAction.Type;
 
             this._cfgAction = action;
-            this._previousAction = src;
-
-            foreach (var function in src.Functions)
-            {
-                var foundHere = this.Functions.Foremost(
-                    (i, item) =>
-                        item.Method.Name == function.Method.Name);
-
-                if (foundHere.Value == null)
-                { this.Functions[foundHere.Key] = function; }
-            }            
+            this._previousAction = previousAction;
         }
 
         protected override IEnumerable<FunctionInfo> Extract()
@@ -61,25 +50,30 @@ namespace HearkenContainer.Sources.Model
                     }); 
                 }
             }
-            return functions;
+
+            if (_previousAction == null ||
+                _previousAction.ListensTo == null ||
+                _previousAction.ListensTo.Length < 1)            
+            { return functions; }
+
+            return functions.Union(_previousAction.Functions, 
+                (f1, f2) => 
+                    f1.Method.Name == f2.Method.Name);
         }
 
         protected override Type[] GetWhoShouldBeListened()
         {
-            var thisType = Type.GetType(_cfgAction.Source);
-            
-            if(_previousAction == null || _previousAction.ListensTo == null || _previousAction.ListensTo.Length < 1)
-            { return new Type[] { thisType }; }
+            Type[] listenedTypes = null;
 
-            var types = _previousAction.ListensTo;
-            _previousAction = null;
+            if(!string.IsNullOrEmpty(_cfgAction.Source))
+            { listenedTypes = new []{ Type.GetType(_cfgAction.Source) }; }
             
-            if (types.Foremost((i, src) => src == thisType).Value == null)
-            {
-                types.Insert(0, thisType);
-            }
+            if(_previousAction == null || 
+                _previousAction.ListensTo == null || 
+                _previousAction.ListensTo.Length < 1)
+            { return listenedTypes; }
 
-            return types;
+            return listenedTypes.Union(_previousAction.ListensTo);
         }
     }
 }

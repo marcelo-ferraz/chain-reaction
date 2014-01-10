@@ -73,17 +73,17 @@
     <Compile Include="Notations\TriggerAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IHearkenContainer.cs" />
-    <Compile Include="Sources\Model\ActionNotFoundException.cs" />
-    <Compile Include="Sources\AppConfigSource.cs" />
-    <Compile Include="Sources\DefaultSource.cs" />
-    <Compile Include="Sources\ISource.cs" />
-    <Compile Include="Sources\Model\AppConfigActionInfo.cs" />
-    <Compile Include="Sources\Model\AppConfigSourceInfo.cs" />
-    <Compile Include="Sources\Model\NotedActionInfo.cs" />
-    <Compile Include="Sources\Model\NotedTriggerInfo.cs" />
-    <Compile Include="Sources\NotationSource.cs" />
+    <Compile Include="Origins\Model\ActionNotFoundException.cs" />
+    <Compile Include="Origins\AppConfigOrigin.cs" />
+    <Compile Include="Origins\DefaultOrigin.cs" />
+    <Compile Include="Origins\IOrigin.cs" />
+    <Compile Include="Origins\Model\AppConfigActionInfo.cs" />
+    <Compile Include="Origins\Model\AppConfigSourceInfo.cs" />
+    <Compile Include="Origins\Model\NotedActionInfo.cs" />
+    <Compile Include="Origins\Model\NotedSourceInfo.cs" />
+    <Compile Include="Origins\NotationOrigin.cs" />
     <Compile Include="Configuration\Using.cs" />
-    <Compile Include="Sources\Model\SourceNotFoundException.cs" />
+    <Compile Include="Origins\Model\SourceNotFoundException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

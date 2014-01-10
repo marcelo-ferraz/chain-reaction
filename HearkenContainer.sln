@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearkenContaniner", "HearkenContainer\HearkenContaniner.csproj", "{5B7127E7-7B42-4571-8391-8241F45A2914}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearkenContainer", "HearkenContainer\HearkenContainer.csproj", "{5B7127E7-7B42-4571-8391-8241F45A2914}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HearkenContainer.Tests", "HearkenContainer.Tests\HearkenContainer.Tests.csproj", "{C1002021-DB32-445E-8A32-E7363765B184}"
 EndProject

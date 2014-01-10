@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime;
 using System.Text;
 using HearkenContainer.Mixins.Model.Collections;
 namespace HearkenContainer.Model

@@ -11,35 +11,41 @@ namespace HearkenContainer.Tests.Model.Notation
     [Action]
     public class Logger
     {
-        StringBuilder builder = new StringBuilder();
+        public Logger()
+        {
+            Builder =
+                new StringBuilder();
+        }
+
+        public StringBuilder Builder { get; set; }
 
         [Function("Init")]
         [Function("ListenedTwice")]
         public void ListenToMoreThanOne(string sentence)
         {
-            builder.Append(sentence);
-            builder.Append("|");
+            Builder.Append(sentence);
+            Builder.Append("|");
         }
 
         [Function]
         public void ListenedTwice(string sentence)
         {
-            builder.Append(sentence);
-            builder.Append("|");
+            Builder.Append(sentence);
+            Builder.Append("|");
         }
 
         [Function]
         public void Middle(string sentence) 
         {
-            builder.Append(sentence);
-            builder.Append("|");
+            Builder.Append(sentence);
+            Builder.Append("|");
         }
         
         [Function]
         public void End(string sentence)
         {
-            builder.Append(sentence);
-            builder.Append("|");
+            Builder.Append(sentence);
+            Builder.Append("|");
         }
     }
 }

@@ -1,14 +1,23 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using HearkenContainer.Mixins.Model.Collections;
 using HearkenContainer.Model;
 using HearkenContainer.Notations;
+using HearkenContainer.Mixins.Model.Collections;
 
-namespace HearkenContainer.Sources.Model
+namespace HearkenContainer.Origins.Model
 {
     public class NotedActionInfo: ActionInfo
     {
+        private ActionInfo _previousAction;
+        internal NotedActionInfo() { }
+        internal NotedActionInfo(ActionInfo previousAction)
+        {
+            _previousAction = previousAction;
+        }
+
         protected override IEnumerable<FunctionInfo> Extract()
         {
             var methods = 
@@ -20,8 +29,19 @@ namespace HearkenContainer.Sources.Model
                     e.IsDefined(typeof(FunctionAttribute), true)), 
                     true);
             }
-            
-            return Extract(methods, false);            
+
+            FunctionInfo[] functions = 
+                Extract(methods, false).ToArray();
+
+            if (_previousAction == null ||
+                _previousAction.Functions == null ||
+                _previousAction.Functions.Length < 1)
+            { return functions; }
+
+            return functions.Union(
+                _previousAction.Functions, 
+                (t1, t2) => 
+                    t1.Method.Name == t2.Method.Name);
         }
 
         private static IEnumerable<FunctionInfo> Extract(IEnumerable<MethodInfo> methods, bool isFullyDecorated)

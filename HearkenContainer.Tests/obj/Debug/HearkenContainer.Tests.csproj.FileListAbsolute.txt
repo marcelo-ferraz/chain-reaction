@@ -1,8 +1,10 @@
 C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\obj\Debug\HearkenContainer.Tests.csprojResolveAssemblyReference.cache
-C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContaniner.Tests.exe.config
-C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContaniner.Tests.exe
-C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContaniner.Tests.pdb
 C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContainer.dll
 C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContainer.pdb
-C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\obj\Debug\HearkenContaniner.Tests.exe
-C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\obj\Debug\HearkenContaniner.Tests.pdb
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\nunit.framework.dll
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\nunit.framework.xml
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContainer.Tests.exe.config
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContainer.Tests.exe
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContainer.Tests.pdb
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\obj\Debug\HearkenContainer.Tests.exe
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\obj\Debug\HearkenContainer.Tests.pdb

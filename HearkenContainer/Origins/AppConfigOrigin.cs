@@ -1,15 +1,15 @@
 ﻿using System;
 using HearkenContainer.AppConfig;
-using HearkenContainer.Sources.Model;
+using HearkenContainer.Origins.Model;
 
-namespace HearkenContainer.Sources
+namespace HearkenContainer.Origins
 {
-    public class AppConfigSource : DefaultSource
+    public class AppConfigOrigin : DefaultOrigin
     {
-        internal AppConfigSource() 
+        internal AppConfigOrigin() 
         { }
 
-        internal AppConfigSource(HearkenContainerSection section) 
+        internal AppConfigOrigin(HearkenContainerSection section) 
         {
             Section = section;
         }
@@ -30,32 +30,28 @@ namespace HearkenContainer.Sources
                 {
                     Type type = null;
                     try
-                    { type = Type.GetType(source.Type); }
-                    catch
-                    { throw new SourceNotFoundException(source.Type); }
+                    { type = Type.GetType(source.Type, true); }
+                    catch(Exception e)
+                    { throw new SourceNotFoundException(source.Type, e); }
 
-                    group.TryGetSource(
+                    group.UpdateOrCreate(
                         type,
-                        (i, src) => 
-                            new AppConfigSourceInfo(src, source.Triggers),
-                        () =>
-                            new AppConfigSourceInfo(Type.GetType(source.Type), source.Triggers));
+                        update: (i, src) => new AppConfigSourceInfo(src, source.Triggers),
+                        create: () => new AppConfigSourceInfo(Type.GetType(source.Type), source.Triggers));
                 }
 
                 foreach (var action in configGroup.Actions)
                 {
                     Type type = null;
                     try
-                    { type = Type.GetType(action.Type); }
+                    { type = Type.GetType(action.Type, true); }
                     catch 
                     { throw new ActionNotFoundException(action.Type); }
 
-                    group.TryGetAction(
+                    group.UpdateOrCreate(
                         type,
-                        (i, src) =>
-                            new AppConfigActionInfo(src, action),
-                        () =>
-                            new AppConfigActionInfo(type, action));
+                        update: (i, act) => new AppConfigActionInfo(act, action),
+                        create: () => new AppConfigActionInfo(type, action));
                     
                 }
 		    }            

@@ -1,0 +1,6 @@
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer\bin\Debug\HearkenContainer.dll.config
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer\bin\Debug\HearkenContainer.dll
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer\bin\Debug\HearkenContainer.pdb
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer\obj\Debug\HearkenContainer.dll
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer\obj\Debug\HearkenContainer.pdb
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer\obj\Debug\HearkenContainer.csprojResolveAssemblyReference.cache

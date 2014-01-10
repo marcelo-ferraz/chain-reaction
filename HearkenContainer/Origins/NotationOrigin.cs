@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using HearkenContainer.Model;
 using HearkenContainer.Notations;
-using HearkenContainer.Sources.Model;
+using HearkenContainer.Origins.Model;
 using HearkenContainer.Mixins.Model.Collections;
 
-namespace HearkenContainer.Sources
+namespace HearkenContainer.Origins
 {
     /// <summary>
     /// Creates or updates a current set of groups
     /// </summary>
-    public class NotationSource : DefaultSource
+    public class NotationOrigin : DefaultOrigin
     {
-        internal NotationSource()
+        internal NotationOrigin()
         { Types = new List<Type>(); }
 
         internal List<Type> Types;
@@ -36,7 +36,10 @@ namespace HearkenContainer.Sources
 
                     group = GetGroup(attr.Group, container);
 
-                    group.Sources.Add(new NotedTriggerInfo() { Type = type });
+                    group.UpdateOrCreate(type,
+                        update: (j, previous) => new NotedSourceInfo(previous, type),
+                        create: () => new NotedSourceInfo() { Type = type });
+
                 }
 
                 if (type.IsDefined(typeof(ActionAttribute), true))
@@ -46,7 +49,10 @@ namespace HearkenContainer.Sources
 
                     group = GetGroup(attr.Group, container);
 
-                    group.Actions.Add(new NotedActionInfo() { Type = type });
+                    group.UpdateOrCreate(type,
+                        update: (j, previous) => new NotedActionInfo(previous) { Type = type },
+                        create: () => new NotedActionInfo() { Type = type });
+
                 }
 
                 if (type.IsDefined(typeof(InterceptorAttribute), true))

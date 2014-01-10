@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using HearkenContainer.Model;
 
-namespace HearkenContainer.Sources
+namespace HearkenContainer.Origins
 {
-    public interface ISource
+    public interface IOrigin
     {
         void Save(IHearkenContainer container);
     }

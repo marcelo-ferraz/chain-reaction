@@ -8,8 +8,8 @@
     <ProjectGuid>{C1002021-DB32-445E-8A32-E7363765B184}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HearkenContaniner.Tests</RootNamespace>
-    <AssemblyName>HearkenContaniner.Tests</AssemblyName>
+    <RootNamespace>HearkenContainer.Tests</RootNamespace>
+    <AssemblyName>HearkenContainer.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -37,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -51,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppConfigTests.cs" />
+    <Compile Include="NotationTests.cs" />
     <Compile Include="Model\AppConfig\MoreUselessProcessing.cs" />
     <Compile Include="Model\AppConfig\Logger.cs" />
     <Compile Include="Model\AppConfig\UselessProcessing.cs" />
@@ -61,13 +66,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HearkenContainer\HearkenContaniner.csproj">
+    <ProjectReference Include="..\HearkenContainer\HearkenContainer.csproj">
       <Project>{5b7127e7-7b42-4571-8391-8241f45a2914}</Project>
-      <Name>HearkenContaniner</Name>
+      <Name>HearkenContainer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

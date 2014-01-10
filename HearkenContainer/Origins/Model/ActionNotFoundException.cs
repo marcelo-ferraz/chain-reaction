@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HearkenContainer.Sources.Model
+namespace HearkenContainer.Origins.Model
 {
-    public class SourceNotFoundException : Exception
+    class ActionNotFoundException : Exception
     {
         private string p;
 
-        public SourceNotFoundException(string p)
+        public ActionNotFoundException(string p)
         {
             // TODO: Complete member initialization
             this.p = p;

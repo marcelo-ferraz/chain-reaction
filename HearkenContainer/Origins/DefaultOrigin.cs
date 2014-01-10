@@ -5,9 +5,9 @@ using System.Text;
 using HearkenContainer.Model;
 using HearkenContainer.Mixins.Model.Collections;
 
-namespace HearkenContainer.Sources
+namespace HearkenContainer.Origins
 {
-    public abstract class DefaultSource : ISource
+    public abstract class DefaultOrigin : IOrigin
     {
         public abstract void Save(IHearkenContainer container);
         

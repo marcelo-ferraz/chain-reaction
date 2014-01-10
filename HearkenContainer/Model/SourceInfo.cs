@@ -7,7 +7,7 @@ namespace HearkenContainer.Model
 {
     public abstract class SourceInfo: IHasTypedInfo
     {
-        private EventInfo[] _events;
+        protected EventInfo[] _events;
         public BindingFlags Flags { get; set; }
         public virtual Type Type { get; set; }
 

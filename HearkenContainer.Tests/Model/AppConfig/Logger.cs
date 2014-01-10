@@ -10,30 +10,36 @@ namespace HearkenContainer.Tests.Model.AppConfig
 {
     public class Logger
     {
-        StringBuilder builder = new StringBuilder();
+        public Logger()
+        {
+            Builder =
+                new StringBuilder();
+        }
+
+        public StringBuilder Builder { get; set; }
 
         public void ListenToMoreThanOne(string sentence)
         {
-            builder.Append(sentence);
-            builder.Append("|");
+            Builder.Append(sentence);
+            Builder.Append("|");
         }
 
         public void ListenedTwice(string sentence)
         {
-            builder.Append(sentence);
-            builder.Append("|");
+            Builder.Append(sentence);
+            Builder.Append("|");
         }
 
         public void Middle(string sentence) 
         {
-            builder.Append(sentence);
-            builder.Append("|");
+            Builder.Append(sentence);
+            Builder.Append("|");
         }
         
         public void End(string sentence)
         {
-            builder.Append(sentence);
-            builder.Append("|");
+            Builder.Append(sentence);
+            Builder.Append("|");
         }
     }
 }

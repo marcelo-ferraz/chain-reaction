@@ -10,19 +10,19 @@ namespace HearkenContainer.AppConfig
         /// <summary>
         /// Provides a base of an configuration element
         /// </summary>
-        public class OfConfiguration : ConfigurationElement
+        public abstract class OfConfiguration : ConfigurationElement
         {
-            protected T Get<T>(string propName)
+            protected virtual T Get<T>(string propName)
             { return (T)base[propName]; }
         }
 
         /// <summary>
         /// Provides a base of an configuration element, whose type is its key
         /// </summary>
-        public class Typed : Element.OfConfiguration
+        public abstract class Typed : Element.OfConfiguration
         {
             [ConfigurationProperty("type", IsRequired = true)]
-            public string Type
+            public virtual string Type
             {
                 get { return Get<string>("type"); }
                 set { base["type"] = value; }
@@ -36,7 +36,7 @@ namespace HearkenContainer.AppConfig
         public class Named : Element.OfConfiguration
         {
             [ConfigurationProperty("name", IsRequired = true)]
-            public string Name
+            public virtual string Name
             {
                 get { return Get<string>("name"); }
                 set { base["name"] = value; }

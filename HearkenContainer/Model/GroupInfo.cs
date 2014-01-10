@@ -39,7 +39,7 @@ namespace HearkenContainer.Model
         public InterceptorList Interceptors { get; set; }
 
         [TargetedPatchingOptOut("Performance required")]
-        private T TryGet<T>(Type type, IList<T> tees, Func<int, T, T> doWhenFound, Func<T> createT)
+        private T UpdateOrCreate<T>(Type type, IList<T> tees, Func<int, T, T> update, Func<T> create)
             where T : IHasTypedInfo
         {
             int index = 0;
@@ -53,24 +53,24 @@ namespace HearkenContainer.Model
 
             if (tee.Value == null)
             {
-                tees.Add(val = createT()); 
+                tees.Add(val = create()); 
             }
             else 
             {
-                doWhenFound(tee.Key, tee.Value);
+                update(tee.Key, tee.Value);
             }
 
             return val;
         }
 
-        public ActionInfo TryGetAction(Type type, Func<int, ActionInfo, ActionInfo> doWhenFound, Func<ActionInfo> createAction)
+        public ActionInfo UpdateOrCreate(Type type, Func<int, ActionInfo, ActionInfo> update, Func<ActionInfo> create)
         {
-            return TryGet<ActionInfo>(type, Actions, doWhenFound, createAction);
+            return UpdateOrCreate<ActionInfo>(type, Actions, update, create);
         }
 
-        public SourceInfo TryGetSource(Type type, Func<int, SourceInfo, SourceInfo> doWhenFound, Func<SourceInfo> createSource)
+        public SourceInfo UpdateOrCreate(Type type, Func<int, SourceInfo, SourceInfo> update, Func<SourceInfo> create)
         {
-            return TryGet<SourceInfo>(type, Sources, doWhenFound, createSource);
+            return UpdateOrCreate<SourceInfo>(type, Sources, update, create);
         }
 
         public int CompareTo(object obj)
