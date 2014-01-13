@@ -5,6 +5,9 @@ using System.Runtime;
 
 namespace HearkenContainer.Mixins.Model.Collections
 {
+    /// <summary>
+    /// Still quite messy and not as performatic as I'd initially wanted. Majorly works, but still looks quite crappy
+    /// </summary>
     public static class ArrayMixins
     {
         private delegate bool TrySZBinarySearchFunction(Array sourceArray, int sourceIndex, int count, Object value, out int retVal);
@@ -53,14 +56,9 @@ namespace HearkenContainer.Mixins.Model.Collections
         {
             int count = 1;
 
-            if (array.Length > 0)
-            {
-                var len = index + count;
-                Array.Copy(array, index, array, index + count, len < array.Length ? array.Length - len : len); 
-            }
-            else
-            { Array.Resize(ref array, 1); }
-
+            Array.Resize(ref array, array.Length + 1);
+            Array.Copy(array, index, array, index + count, array.Length - (index + count)); ; 
+            
             Array.Clear(array, index, count);
             array[index] = val;
             return array;
