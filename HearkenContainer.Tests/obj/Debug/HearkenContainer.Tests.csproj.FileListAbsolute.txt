@@ -3,8 +3,8 @@ C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\De
 C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContainer.pdb
 C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\nunit.framework.dll
 C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\nunit.framework.xml
-C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContainer.Tests.exe.config
-C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContainer.Tests.exe
 C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContainer.Tests.pdb
-C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\obj\Debug\HearkenContainer.Tests.exe
 C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\obj\Debug\HearkenContainer.Tests.pdb
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContainer.Tests.dll.config
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\bin\Debug\HearkenContainer.Tests.dll
+C:\Users\mmeira\Documents\GitHub\hearken-container\HearkenContainer.Tests\obj\Debug\HearkenContainer.Tests.dll

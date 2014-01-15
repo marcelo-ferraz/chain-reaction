@@ -6,7 +6,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C1002021-DB32-445E-8A32-E7363765B184}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HearkenContainer.Tests</RootNamespace>
     <AssemblyName>HearkenContainer.Tests</AssemblyName>
@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
@@ -55,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConfigTests.cs" />
+    <Compile Include="MixedOriginsTest.cs" />
     <Compile Include="NotationTests.cs" />
     <Compile Include="Model\AppConfig\MoreUselessProcessing.cs" />
     <Compile Include="Model\AppConfig\Logger.cs" />
@@ -62,7 +66,6 @@
     <Compile Include="Model\Notation\MoreUselessProcessing.cs" />
     <Compile Include="Model\Notation\Logger.cs" />
     <Compile Include="Model\Notation\UselessProcessing.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

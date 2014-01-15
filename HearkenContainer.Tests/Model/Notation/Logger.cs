@@ -20,7 +20,6 @@ namespace HearkenContainer.Tests.Model.Notation
         public StringBuilder Builder { get; set; }
 
         [Function("Init")]
-        [Function("ListenedTwice")]
         public void ListenToMoreThanOne(string sentence)
         {
             Builder.Append(sentence);
@@ -35,6 +34,7 @@ namespace HearkenContainer.Tests.Model.Notation
         }
 
         [Function]
+        [Function("ListenedTwice")]
         public void Middle(string sentence) 
         {
             Builder.Append(sentence);

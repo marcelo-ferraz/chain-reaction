@@ -24,7 +24,7 @@ namespace HearkenContainer.Tests
         }
 
         [Test]
-        public void Main()
+        public void CorrectScenarioTest()
         {
             Logger logger1 = null;
 
@@ -41,7 +41,7 @@ namespace HearkenContainer.Tests
             ContainsSubstring("I is in the middle...").Matches(log);
             ContainsSubstring("The end!").Matches(log);
 
-            Not.ContainsSubstring("Supposed To be listened two times.").Matches(log);
+            Not.ContainsSubstring("Supposed To be listened two times, but not on appConfig.").Matches(log);
             Not.ContainsSubstring("Although it was put to be called, no one is supposed to be listening.").Matches(log);
 
             Logger logger2 = null;
@@ -59,7 +59,7 @@ namespace HearkenContainer.Tests
             Not.ContainsSubstring("I is in the middle...").Matches(log);
             Not.ContainsSubstring("The end!").Matches(log);
 
-            ContainsSubstring("Supposed To be listened two times.").Matches(log2);
+            ContainsSubstring("Supposed To be listened two times, but not on appConfig.").Matches(log2);
             Not.ContainsSubstring("Although it was put to be called, no one is supposed to be listening.").Matches(log2);
         }
     }

@@ -18,7 +18,7 @@ namespace HearkenContainer.Tests.Model.AppConfig
             base.Start();
 
             if (ListenedTwice != null)
-            { ListenedTwice("Supposed To be listened two times."); }
+            { ListenedTwice("Supposed To be listened two times, but not on appConfig."); }
             if (Ignored != null)
             { Ignored("Although it was put to be called, no one is supposed to be listening."); }
         }
