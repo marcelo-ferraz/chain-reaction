@@ -53,6 +53,8 @@
     <Compile Include="AppConfig\HearkenContainerSection.cs" />
     <Compile Include="Configuration\Configure.cs" />
     <Compile Include="Configuration\ThisExpression.cs" />
+    <Compile Include="GroupNotFoundException.cs" />
+    <Compile Include="GroupNotFoundException_2.cs" />
     <Compile Include="Infrastructure\Parallel.cs" />
     <Compile Include="Mixins\Model\Collections\ArrayMixins.cs" />
     <Compile Include="Model\IHasTypedInfo.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Origins\NotationOrigin.cs" />
     <Compile Include="Configuration\Using.cs" />
     <Compile Include="Origins\Model\SourceNotFoundException.cs" />
+    <Compile Include="SourceNotFoundException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

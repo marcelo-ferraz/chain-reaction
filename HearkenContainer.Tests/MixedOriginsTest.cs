@@ -66,8 +66,8 @@ namespace HearkenContainer.Tests
             var log04 =
                 notedLogger.Builder.ToString();
 
-            Not.EqualTo("Supposed To be listened two times, but not on appConfig.|").Matches(log03);
-            EqualTo("Supposed To be listened two times, but not on appConfig.|Supposed To be listened two times, but not on appConfig.|").Matches(log03);
+            Not.EqualTo("Supposed To be listened two times, but not on appConfig.|").Matches(log04);
+            EqualTo("Supposed To be listened two times, but not on appConfig.|Supposed To be listened two times, but not on appConfig.|").Matches(log04);
             Not.ContainsSubstring("Although it was put to be called, no one is supposed to be listening.").Matches(log04);
         }
 

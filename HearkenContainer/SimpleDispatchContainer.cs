@@ -1,61 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using HearkenContainer.Model;
 using HearkenContainer.Mixins.Model.Collections;
-using HearkenContainer.Notations;
-using System.Reflection;
+using HearkenContainer.Model;
 
 namespace HearkenContainer
 {
+    /// <summary>
+    /// COntainer specialized in I
+    /// </summary>
     public class SimpleDispatchContainer: IHearkenContainer
     {
-        GroupInfo[] _groups;
+        protected GroupInfo[] _groups;
 
         public SimpleDispatchContainer()
         {
             _groups = (GroupInfo[])
                 Array.CreateInstance(typeof(GroupInfo), 1);
         }
-
-        public bool TryResolve(string groupName, out GroupInfo group)
+        
+        private static void AttachAll<T>(Action<object> afterLoadAction, GroupInfo group, SourceInfo source, T eventsSource)
         {
-            return (group = _groups.BinaryFind(groupName)) != null;
-        }
-
-        public void Add(GroupInfo group)
-        {
-            int index = 0;
-
-            if (_groups.Length < 2)
-            {
-                _groups[0] = group;
-                return;
-            }
-
-            if (_groups.BinarySearch(group.Name, out index))
-            { return; }
-
-            _groups.Insert(~index, group);            
-        }
-
-        public T Invoke<T>(Action<object> afterLoadAction = null, string groupName = "")
-        {
-            var group = 
-                _groups.Foremost(g => 
-                    g.Name == groupName);
-
-            var source = group.Sources.Foremost(
-                tr => typeof(T).IsAssignableFrom(tr.Type));
-
-            return InvokeNAttachAll<T>(group, source, afterLoadAction);
-        }
-
-        protected T InvokeNAttachAll<T>(GroupInfo group, SourceInfo trigger, Action<object> afterLoadAction)
-        {
-            var eventsSource =
-                Activator.CreateInstance<T>();
-
             foreach (var action in group.Actions)
             {
                 int i;
@@ -71,14 +34,74 @@ namespace HearkenContainer
                  */
                 var listener =
                     Activator.CreateInstance(action.Type);
-                                
-                action.Attach(eventsSource, trigger.Events, listener);
+
+                action.Attach(eventsSource, source.Events, listener);
 
                 if (afterLoadAction != null)
                 { afterLoadAction(listener); }
             }
+        }
+
+        private virtual T SeekNInvoke<T>(string groupName, object[] arguments, out GroupInfo group, out SourceInfo source)
+        {
+            group =
+                _groups.Foremost(g =>
+                    g.Name == groupName);
+
+            source = group.Sources.Foremost(
+                tr => typeof(T).IsAssignableFrom(tr.Type));
+
+            if (group == null)
+            { throw new GroupNotFoundException("The Group named was not found", groupName); }
+
+            if (source == null)
+            { throw new SourceNotFoundException("The source of type {0} was not found in the group: '{1}'", typeof(T).Name, group.Name); }
+
+            return (T)Activator.CreateInstance(typeof(T), arguments);
+        }
+
+        protected virtual T InvokeNAttachAll<T>(Action<object> afterLoadAction, string groupName, params object[] arguments)
+        {
+            GroupInfo group;
+            SourceInfo source;
+            T eventsSource;
+
+            SeekNInvoke<T>(groupName, arguments, out group, out source);
+
+            AttachAll<T>(afterLoadAction, group, source, eventsSource);
 
             return eventsSource;
         }
+
+        public virtual bool TryResolve(string groupName, out GroupInfo group)
+        {
+            return (group = _groups.BinaryFind(groupName)) != null;
+        }
+
+        public virtual void Add(GroupInfo group)
+        {
+            int index = 0;
+
+            if (_groups.Length < 2)
+            {
+                _groups[0] = group;
+                return;
+            }
+
+            if (_groups.BinarySearch(group.Name, out index))
+            { return; }
+
+            _groups.Insert(~index, group);            
+        }
+
+        public virtual T Invoke<T>(string groupName = "", Action<object> afterLoadAction = null)
+        {
+            return InvokeNAttachAll<T>(afterLoadAction, groupName);
+        }
+
+        public virtual T Invoke<T>(string groupName = "", Action<object> afterLoadAction = null, params object[] arguments)
+        {
+            return InvokeNAttachAll<T>(afterLoadAction, groupName, arguments);
+        }   
     }
 }
