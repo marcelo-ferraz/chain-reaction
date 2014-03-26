@@ -1,4 +1,3 @@
-hearken-container
-=================
+#Chain Reaction Container
 
-A Multi-dispatch Delegate Container
+Chain Reaction is a multi-dispatch delegate and inversion of control container, thought to achieve plugin-injection easy and dynamic.

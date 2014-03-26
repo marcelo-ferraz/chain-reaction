@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5B7127E7-7B42-4571-8391-8241F45A2914}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ChainReaction</RootNamespace>
+    <AssemblyName>HearkenContainer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppConfig\CollectionOf.cs" />
+    <Compile Include="AppConfig\Element.cs" />
+    <Compile Include="AppConfig\InterceptorElement.cs" />
+    <Compile Include="AppConfig\InterceptorElementCollection.cs" />
+    <Compile Include="AppConfig\ChainReactionSection.cs" />
+    <Compile Include="Configuration\Configure.cs" />
+    <Compile Include="Configuration\ThisExpression.cs" />
+    <Compile Include="GroupNotFoundException.cs" />
+    <Compile Include="GroupNotFoundException_2.cs" />
+    <Compile Include="Infrastructure\Parallel.cs" />
+    <Compile Include="Mixins\Model\Collections\ArrayMixins.cs" />
+    <Compile Include="Model\IHasTypedInfo.cs" />
+    <Compile Include="Model\FunctionInfo.cs" />
+    <Compile Include="SimpleChainReactionContainer.cs" />
+    <Compile Include="Model\Collections\ChainGroupList.cs" />
+    <Compile Include="Model\Collections\InterceptorList.cs" />
+    <Compile Include="Mixins\Model\Collections\IEnumerableMixins.cs" />
+    <Compile Include="Model\GroupInfo.cs" />
+    <Compile Include="Model\InterceptorInfo.cs" />
+    <Compile Include="Model\ActionInfo.cs" />
+    <Compile Include="Model\SourceInfo.cs" />
+    <Compile Include="Notations\BaseEventRelatedAttribute.cs" />
+    <Compile Include="Notations\SourceAttribute.cs" />
+    <Compile Include="Notations\InterceptorAttribute.cs" />
+    <Compile Include="Notations\ActionAttribute.cs" />
+    <Compile Include="Notations\FunctionAttribute.cs" />
+    <Compile Include="Notations\TriggerAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IChainReactionContainer.cs" />
+    <Compile Include="Origins\Model\ActionNotFoundException.cs" />
+    <Compile Include="Origins\AppConfigOrigin.cs" />
+    <Compile Include="Origins\DefaultOrigin.cs" />
+    <Compile Include="Origins\IOrigin.cs" />
+    <Compile Include="Origins\Model\AppConfigActionInfo.cs" />
+    <Compile Include="Origins\Model\AppConfigSourceInfo.cs" />
+    <Compile Include="Origins\Model\NotedActionInfo.cs" />
+    <Compile Include="Origins\Model\NotedSourceInfo.cs" />
+    <Compile Include="Origins\NotationOrigin.cs" />
+    <Compile Include="Configuration\Using.cs" />
+    <Compile Include="Origins\Model\SourceNotFoundException.cs" />
+    <Compile Include="SourceNotFoundException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
