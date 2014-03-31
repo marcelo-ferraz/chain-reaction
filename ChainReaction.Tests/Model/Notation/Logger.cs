@@ -4,7 +4,7 @@ using ChainReaction.Notations;
 
 namespace ChainReaction.Tests.Model.Notation
 {
-    [Action]
+    [Handler]
     public class Logger
     {
         public Logger()
@@ -15,29 +15,29 @@ namespace ChainReaction.Tests.Model.Notation
 
         public StringBuilder Builder { get; set; }
 
-        [Function("Init")]
+        [Action("Init")]
         public void ListenToMoreThanOne(string sentence)
         {
             Builder.Append(sentence);
             Builder.Append("|");
         }
 
-        [Function]
+        [Action]
         public void ListenedTwice(string sentence)
         {
             Builder.Append(sentence);
             Builder.Append("|");
         }
 
-        [Function]
-        [Function("ListenedTwice")]
+        [Action]
+        [Action(EventName="ListenedTwice")]
         public void Middle(string sentence) 
         {
             Builder.Append(sentence);
             Builder.Append("|");
         }
         
-        [Function]
+        [Action]
         public void End(string sentence)
         {
             Builder.Append(sentence);

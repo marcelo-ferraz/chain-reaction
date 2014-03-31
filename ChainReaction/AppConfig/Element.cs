@@ -46,7 +46,7 @@ namespace ChainReaction.AppConfig
         /// <summary>
         /// Function configuration element 
         /// </summary>
-        public class Function : Element.Named 
+        public class Action : Element.Named 
         {
             [ConfigurationProperty("event", IsKey = false)]
             public string Event
@@ -64,7 +64,7 @@ namespace ChainReaction.AppConfig
         /// <summary>
         /// Action (Listener class) configuration element 
         /// </summary>
-        public class Action : Element.Typed
+        public class Handler : Element.Typed
         {
             [ConfigurationProperty("source", IsKey = false, IsRequired = false)]
             public string Source
@@ -73,10 +73,10 @@ namespace ChainReaction.AppConfig
                 set { base["source"] = value; }
             }
 
-            [ConfigurationProperty(CollectionOf.Functions.NodeName, IsKey = false)]
-            public CollectionOf.Functions Functions
+            [ConfigurationProperty(CollectionOf.Handlers.NodeName, IsKey = false)]
+            public CollectionOf.Handlers Actions
             {
-                get { return ((CollectionOf.Functions)(base[CollectionOf.Functions.NodeName])); }
+                get { return ((CollectionOf.Handlers)(base[CollectionOf.Handlers.NodeName])); }
             }
         }
 

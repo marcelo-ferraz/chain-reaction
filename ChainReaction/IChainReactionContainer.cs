@@ -8,6 +8,6 @@ namespace ChainReaction
 
         void Add(GroupInfo group);
 
-        T Invoke<T>(string groupName = "", Action<object> afterLoad = null);
+        T Invoke<T>(string group = "", Action<object> afterLoad = null);
     }
 }

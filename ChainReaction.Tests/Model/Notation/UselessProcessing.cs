@@ -9,8 +9,9 @@ namespace ChainReaction.Tests.Model.Notation
     [Source]
     public class UselessProcessing
     {
+        [Trigger]
         public event Action<String> Init;
-        
+        [Trigger]
         public event Action<String> Middle;
 
         public event Action<String> End;

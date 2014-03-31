@@ -18,7 +18,7 @@ namespace ChainReaction.Tests
         {
             _container = Configure
                 .This(new SimpleChainReactionContainer())                
-                .Source(Using.AppConfig())
+                .With(InputFrom.AppConfig())                
                 .Container;
         }
 

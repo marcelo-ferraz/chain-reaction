@@ -14,16 +14,17 @@ namespace ChainReaction.Tests
         public void AppCfgAndNotationOrigin()
         {
             var container = Configure
-                .This(new SimpleChainReactionContainer())
-                .Source(Using.AppConfig())
-                .Source(Using.Annotations(this.GetType().Assembly))
+                .This<SimpleChainReactionContainer>()
+                .With(InputFrom.AppConfig())
+                .With(InputFrom.Annotations(this.GetType().Assembly))
                 .Container;
 
             AppCfg.Logger appCfgLogger = null;
             Annotations.Logger notedLogger = null;
 
             var uselessProcess = container.Invoke<AppCfg.UselessProcessing>(
-                afterLoad: listener => 
+                group: "oneGroup"
+                ,afterLoad: listener => 
                     GetLoggers(ref appCfgLogger, ref notedLogger, listener));
 
             uselessProcess.Start();

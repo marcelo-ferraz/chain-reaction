@@ -15,7 +15,7 @@ namespace ChainReaction.Model
         {
             this.Name = name;
             Sources = new List<SourceInfo>();
-            Actions = new List<ActionInfo>();
+            Actions = new List<HandlerInfo>();
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace ChainReaction.Model
         /// <summary>
         /// Listenters that will be executed as soon as necessary
         /// </summary>
-        public IList<ActionInfo> Actions { get; set; }
+        public IList<HandlerInfo> Actions { get; set; }
 
         /// <summary>
         /// Interceptors, responsible for interfering in one or all actions
@@ -64,9 +64,9 @@ namespace ChainReaction.Model
             return val;
         }
 
-        public ActionInfo UpdateOrCreate(Type type, Func<int, ActionInfo, ActionInfo> update, Func<ActionInfo> create)
+        public HandlerInfo UpdateOrCreate(Type type, Func<int, HandlerInfo, HandlerInfo> update, Func<HandlerInfo> create)
         {
-            return UpdateOrCreate<ActionInfo>(type, Actions, update, create);
+            return UpdateOrCreate<HandlerInfo>(type, Actions, update, create);
         }
 
         public SourceInfo UpdateOrCreate(Type type, Func<int, SourceInfo, SourceInfo> update, Func<SourceInfo> create)

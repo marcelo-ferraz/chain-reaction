@@ -1,19 +1,31 @@
-﻿namespace ChainReaction.Configuration
+﻿using System;
+namespace ChainReaction.Configuration
 {
     public static class Configure
     {
-        public static ThisExpression This()
+        public static WithExpression This()
         {
-            var instance = new ThisExpression();
-            instance.Container = new SimpleChainReactionContainer();
-            return instance;
+            var cfgInstance = new WithExpression();
+            cfgInstance.Container = new SimpleChainReactionContainer();
+            return cfgInstance;
         }
 
-        public static ThisExpression This(IChainReactionContainer container)
+        public static WithExpression This(IChainReactionContainer container)
         {
-            var instance = new ThisExpression();
-            instance.Container = container;
-            return instance;
+            var cfgInstance = new WithExpression();
+            cfgInstance.Container = container;
+            return cfgInstance;
+        }
+
+        public static WithExpression This<T>()
+            where T : IChainReactionContainer 
+        {
+            var cfgInstance = new WithExpression();
+            
+            cfgInstance.Container = 
+                Activator.CreateInstance<T>();
+            
+            return cfgInstance;
         }
     }
 }

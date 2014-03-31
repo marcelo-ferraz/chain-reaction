@@ -9,7 +9,7 @@ namespace ChainReaction.Notations
     /// Marks a class as a set of functions that will be executed given the right event or set of events are fired
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
-    public class ActionAttribute : EventRelatedAttribute
+    public class HandlerAttribute : EventRelatedAttribute
     {
         /// <summary>
         /// The interceptor, to be raised when the class is instantiated

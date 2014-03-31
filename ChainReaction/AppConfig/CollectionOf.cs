@@ -63,10 +63,10 @@ namespace ChainReaction.AppConfig
         /// <summary>
         /// A set of functions
         /// </summary>
-        [ConfigurationCollection(typeof(Element.Function))]
-        public class Functions : CollectionOf.NamedElements<Element.Function>
+        [ConfigurationCollection(typeof(Element.Action))]
+        public class Handlers : CollectionOf.NamedElements<Element.Action>
         {
-            public const string NodeName = "functions";
+            public const string NodeName = "actions";
         }
 
         /// <summary>
@@ -81,8 +81,8 @@ namespace ChainReaction.AppConfig
         /// <summary>
         /// A set of Actions
         /// </summary>
-        [ConfigurationCollection(typeof(Element.Action))]
-        public class Actions : CollectionOf.TypedElements<Element.Action>
+        [ConfigurationCollection(typeof(Element.Handler))]
+        public class Handlers : CollectionOf.TypedElements<Element.Handler>
         {
             public const string NodeName = "actions";
         }

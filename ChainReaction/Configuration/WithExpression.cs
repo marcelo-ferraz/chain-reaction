@@ -2,11 +2,11 @@
 
 namespace ChainReaction.Configuration
 {
-    public class ThisExpression
+    public class WithExpression
     {
         public IChainReactionContainer Container { get; set; }
         
-        public ThisExpression Source(IOrigin source)
+        public WithExpression With(IOrigin source)
         {
             source.Save(Container);
 

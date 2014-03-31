@@ -4,11 +4,42 @@ using ChainReaction.Origins;
 
 namespace ChainReaction.Configuration
 {
-    public static class Using
+    public static class InputFrom
     {
         /// <summary>
         /// </summary>
-        /// <param name="assembly"></param>
+        /// <param name="getTypes"></param>
+        /// <returns></returns>
+        public static NotationOrigin Annotations(params Func<Type>[] getTypes)
+        {
+            var source =
+                new NotationOrigin();
+
+            for (int i = 0; i < getTypes.Length; i++)
+            {
+                source.Types.Add(getTypes[i]());   
+            }           
+
+            return source;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="getTypes"></param>
+        /// <returns></returns>
+        public static NotationOrigin Annotations(Func<Type[]> getTypes)
+        {
+            var source =
+                new NotationOrigin();
+
+            source.Types.AddRange(getTypes());
+
+            return source;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="types"></param>
         /// <returns></returns>
         public static NotationOrigin Annotations(params Type[] types)
         {

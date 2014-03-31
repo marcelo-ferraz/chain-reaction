@@ -52,7 +52,7 @@
     <Compile Include="AppConfig\InterceptorElementCollection.cs" />
     <Compile Include="AppConfig\ChainReactionSection.cs" />
     <Compile Include="Configuration\Configure.cs" />
-    <Compile Include="Configuration\ThisExpression.cs" />
+    <Compile Include="Configuration\WithExpression.cs" />
     <Compile Include="GroupNotFoundException.cs" />
     <Compile Include="GroupNotFoundException_2.cs" />
     <Compile Include="Infrastructure\Parallel.cs" />
@@ -84,7 +84,7 @@
     <Compile Include="Origins\Model\NotedActionInfo.cs" />
     <Compile Include="Origins\Model\NotedSourceInfo.cs" />
     <Compile Include="Origins\NotationOrigin.cs" />
-    <Compile Include="Configuration\Using.cs" />
+    <Compile Include="Configuration\SourceFromExpression.cs" />
     <Compile Include="Origins\Model\SourceNotFoundException.cs" />
     <Compile Include="SourceNotFoundException.cs" />
   </ItemGroup>

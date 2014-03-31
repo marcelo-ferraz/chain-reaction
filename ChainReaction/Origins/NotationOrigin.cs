@@ -13,7 +13,9 @@ namespace ChainReaction.Origins
     public class NotationOrigin : DefaultOrigin
     {
         internal NotationOrigin()
-        { Types = new List<Type>(); }
+        { 
+            Types = new List<Type>(); 
+        }
 
         internal List<Type> Types;
 
@@ -41,10 +43,10 @@ namespace ChainReaction.Origins
                         create: () => new NotedSourceInfo() { Type = type });
                 }
 
-                if (type.IsDefined(typeof(ActionAttribute), true))
+                if (type.IsDefined(typeof(HandlerAttribute), true))
                 {
                     var attr =
-                        Get<ActionAttribute>(type);
+                        Get<HandlerAttribute>(type);
 
                     group = GetGroup(attr.Group, container);
 

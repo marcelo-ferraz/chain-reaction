@@ -7,9 +7,9 @@ using System.Text;
 using ChainReaction.Mixins.Model.Collections;
 namespace ChainReaction.Model
 {
-    public abstract class ActionInfo: IHasTypedInfo
+    public abstract class HandlerInfo: IHasTypedInfo
     {
-        private FunctionInfo[] _methods;
+        private ActionInfo[] _methods;
         private Type[] _listensTo;
         public virtual BindingFlags Flags { get; set; }
         public virtual Type Type { get; set; }
@@ -19,17 +19,17 @@ namespace ChainReaction.Model
             get { return _listensTo ?? (_listensTo = GetWhoShouldBeListened()); } 
         }
 
-        public virtual FunctionInfo[] Functions 
+        public virtual ActionInfo[] Actions 
         {
             get { return _methods ?? (_methods = Extract().ToArray()); }            
         }
         
-        public ActionInfo()
+        public HandlerInfo()
         {
             Flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly;
         }
 
-        protected abstract IEnumerable<FunctionInfo> Extract();
+        protected abstract IEnumerable<ActionInfo> Extract();
         protected abstract Type[] GetWhoShouldBeListened();
 
         public virtual object Invoke(object eventSource, IEnumerable<EventInfo> events)
@@ -42,23 +42,23 @@ namespace ChainReaction.Model
             return result;
         }
 
-        public virtual void Attach(object eventSource, IEnumerable<EventInfo> events, object action)
+        public virtual void Attach(object eventSource, IEnumerable<EventInfo> events, object handler)
         {
             var actionType =
-                action.GetType();
+                handler.GetType();
 
-            foreach (var function in Functions)
+            foreach (var action in Actions)
             {
-                if (function.Method.DeclaringType == typeof(object)) { continue; }
+                if (action.Method.DeclaringType == typeof(object)) { continue; }
 
                 var @event =
-                    events.Foremost(e => e.Name.Equals(function.EventName));
+                    events.Foremost(e => e.Name.Equals(action.EventName));
 
                 if (@event == null) { continue; }
                 //{ throw new EventNotFoundException(function.EventName, function.Method.Name, action.GetType()); }
 
                 var @delegate = Delegate
-                    .CreateDelegate(@event.EventHandlerType, action, function.Method.Name);
+                    .CreateDelegate(@event.EventHandlerType, action, action.Method.Name);
                 
                 if(HaveSameSignature(@delegate, @event))
                 { @event.AddEventHandler(eventSource, @delegate); }
@@ -71,7 +71,7 @@ namespace ChainReaction.Model
 
             /*
              * TODO: perhaps it might need to be cached. But before running into any battle, verify if
-             * ever the delegate and event are diferent and still assignable.
+             * ever the delegate and event are diferent and still assinable.
              */
 
             var evHandlerInvoke = 

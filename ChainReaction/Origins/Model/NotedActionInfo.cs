@@ -9,51 +9,51 @@ using ChainReaction.Mixins.Model.Collections;
 
 namespace ChainReaction.Origins.Model
 {
-    public class NotedActionInfo: ActionInfo
+    public class NotedActionInfo: HandlerInfo
     {
-        private ActionInfo _previousAction;
+        private HandlerInfo _previousAction;
         internal NotedActionInfo() { }
-        internal NotedActionInfo(ActionInfo previousAction)
+        internal NotedActionInfo(HandlerInfo previousAction)
         {
             _previousAction = previousAction;
         }
 
-        protected override IEnumerable<FunctionInfo> Extract()
+        protected override IEnumerable<ActionInfo> Extract()
         {
             var methods = 
                 this.Type.GetMethods();                
             
-            if (methods.Foremost(e => e.IsDefined(typeof(FunctionAttribute), true)) != null)
+            if (methods.Foremost(e => e.IsDefined(typeof(ActionAttribute), true)) != null)
             {
                 return Extract(methods.Which(e => 
-                    e.IsDefined(typeof(FunctionAttribute), true)), 
+                    e.IsDefined(typeof(ActionAttribute), true)), 
                     true);
             }
 
-            FunctionInfo[] functions = 
+            ActionInfo[] functions = 
                 Extract(methods, false).ToArray();
 
             if (_previousAction == null ||
-                _previousAction.Functions == null ||
-                _previousAction.Functions.Length < 1)
+                _previousAction.Actions == null ||
+                _previousAction.Actions.Length < 1)
             { return functions; }
 
             return functions.Union(
-                _previousAction.Functions, 
+                _previousAction.Actions, 
                 (t1, t2) => 
                     t1.Method.Name == t2.Method.Name);
         }
 
-        private static IEnumerable<FunctionInfo> Extract(IEnumerable<MethodInfo> methods, bool isFullyDecorated)
+        private static IEnumerable<ActionInfo> Extract(IEnumerable<MethodInfo> methods, bool isFullyDecorated)
         {
             foreach (var method in methods)
             {
                 var attrs =
-                    method.GetCustomAttributes(true).Which(e => e is FunctionAttribute);
+                    method.GetCustomAttributes(true).Which(e => e is ActionAttribute);
 
                 if (!isFullyDecorated)
                 {
-                    yield return new FunctionInfo
+                    yield return new ActionInfo
                     {
                         Method = method,
                         EventName = GetMethodName(isFullyDecorated, method)
@@ -63,17 +63,17 @@ namespace ChainReaction.Origins.Model
                 {
                     foreach (var attr in attrs)
                     {
-                        yield return new FunctionInfo
+                        yield return new ActionInfo
                         {
                             Method = method,
-                            EventName = GetMethodName(isFullyDecorated, method, (FunctionAttribute)attr)
+                            EventName = GetMethodName(isFullyDecorated, method, (ActionAttribute)attr)
                         };
                     }
                 }
             }
         }
 
-        private static string GetMethodName(bool hasAttr, MethodInfo method, FunctionAttribute actionAttr = null)
+        private static string GetMethodName(bool hasAttr, MethodInfo method, ActionAttribute actionAttr = null)
         {            
             return hasAttr ?
                 (string.IsNullOrEmpty(actionAttr.EventName) ? method.Name : actionAttr.EventName) :
@@ -82,9 +82,9 @@ namespace ChainReaction.Origins.Model
 
         protected override Type[] GetWhoShouldBeListened()
         {
-            var attr = (ActionAttribute)
+            var attr = (HandlerAttribute)
                 Type.GetCustomAttributes(true)
-                .Foremost(a => a is ActionAttribute);
+                .Foremost(a => a is HandlerAttribute);
 
             return attr.ListensTo;
         }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ChainReaction.Model
 {
-    public class FunctionInfo
+    public class ActionInfo
     {
         public MethodInfo Method { get; set; }
         public string EventName { get; set; }

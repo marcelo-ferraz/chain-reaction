@@ -6,18 +6,18 @@ using ChainReaction.Model;
 
 namespace ChainReaction.Origins.Model
 {
-    public class AppConfigActionInfo : ActionInfo
+    public class AppConfigActionInfo : HandlerInfo
     {
-        private AppConfig.Element.Action _cfgAction;
-        private ActionInfo _previousAction;
+        private AppConfig.Element.Handler _cfgAction;
+        private HandlerInfo _previousAction;
 
-        public AppConfigActionInfo(Type type, AppConfig.Element.Action action)
+        public AppConfigActionInfo(Type type, AppConfig.Element.Handler action)
         {
             this.Type = type;
             this._cfgAction = action;
         }
 
-        public AppConfigActionInfo(ActionInfo previousAction, AppConfig.Element.Action action)
+        public AppConfigActionInfo(HandlerInfo previousAction, AppConfig.Element.Handler action)
         {
             this.Type = previousAction.Type;
 
@@ -25,18 +25,18 @@ namespace ChainReaction.Origins.Model
             this._previousAction = previousAction;
         }
 
-        protected override IEnumerable<FunctionInfo> Extract()
+        protected override IEnumerable<ActionInfo> Extract()
         {
             var methods = 
                 Type.GetMethods(Flags);
 
-            if (_cfgAction.Functions == null || _cfgAction.Functions.Count < 1)
-            { return methods.Select(m => new FunctionInfo { Method = m, EventName = m.Name }); }
+            if (_cfgAction.Actions == null || _cfgAction.Actions.Count < 1)
+            { return methods.Select(m => new ActionInfo { Method = m, EventName = m.Name }); }
 
             var functions =
-                ArrayMixins.Create<FunctionInfo>(0);
+                ArrayMixins.Create<ActionInfo>(0);
 
-            foreach (var function in _cfgAction.Functions)
+            foreach (var function in _cfgAction.Actions)
             {
                 var method = methods.Foremost(
                     (i, ev) =>
@@ -44,7 +44,7 @@ namespace ChainReaction.Origins.Model
 
                 if (method.Value != null)
                 {
-                    functions.Insert(method.Key, new FunctionInfo() { 
+                    functions.Insert(method.Key, new ActionInfo() { 
                         Method = method.Value,
                         EventName = string.IsNullOrEmpty(function.Event) ? method.Value.Name : function.Event
                     }); 
@@ -56,7 +56,7 @@ namespace ChainReaction.Origins.Model
                 _previousAction.ListensTo.Length < 1)            
             { return functions; }
 
-            return functions.Union(_previousAction.Functions, 
+            return functions.Union(_previousAction.Actions, 
                 (f1, f2) => 
                     f1.Method.Name == f2.Method.Name);
         }

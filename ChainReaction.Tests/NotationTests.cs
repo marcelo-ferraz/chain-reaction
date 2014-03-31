@@ -19,7 +19,7 @@ namespace ChainReaction.Tests
         {
             _container = Configure
                 .This(new SimpleChainReactionContainer())
-                .Source(Using.Annotations(this.GetType().Assembly))
+                .With(InputFrom.Annotations(this.GetType().Assembly))
                 .Container;
         }
 
