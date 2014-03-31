@@ -1,6 +1,6 @@
 C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction\obj\Debug\ChainReaction.csprojResolveAssemblyReference.cache
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction\obj\Debug\HearkenContainer.dll
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction\obj\Debug\HearkenContainer.pdb
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction\bin\Debug\HearkenContainer.dll.config
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction\bin\Debug\HearkenContainer.dll
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction\bin\Debug\HearkenContainer.pdb
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction\bin\Debug\ChainReaction.dll.config
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction\bin\Debug\ChainReaction.dll
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction\bin\Debug\ChainReaction.pdb
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction\obj\Debug\ChainReaction.dll
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction\obj\Debug\ChainReaction.pdb

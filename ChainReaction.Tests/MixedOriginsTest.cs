@@ -23,8 +23,7 @@ namespace ChainReaction.Tests
             Annotations.Logger notedLogger = null;
 
             var uselessProcess = container.Invoke<AppCfg.UselessProcessing>(
-                group: "oneGroup"
-                ,afterLoad: listener => 
+                afterLoad: listener => 
                     GetLoggers(ref appCfgLogger, ref notedLogger, listener));
 
             uselessProcess.Start();

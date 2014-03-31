@@ -36,17 +36,17 @@ namespace ChainReaction.Origins.Model
             var functions =
                 ArrayMixins.Create<ActionInfo>(0);
 
-            foreach (var function in _cfgAction.Actions)
+            foreach (var action in _cfgAction.Actions)
             {
                 var method = methods.Foremost(
                     (i, ev) =>
-                        ev.Name == function.Name);
+                        ev.Name == action.Name);
 
                 if (method.Value != null)
                 {
                     functions.Insert(method.Key, new ActionInfo() { 
                         Method = method.Value,
-                        EventName = string.IsNullOrEmpty(function.Event) ? method.Value.Name : function.Event
+                        EventName = string.IsNullOrEmpty(action.Event) ? method.Value.Name : action.Event
                     }); 
                 }
             }

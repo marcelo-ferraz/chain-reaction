@@ -44,15 +44,15 @@ namespace ChainReaction
 
         protected virtual T SeekNInvoke<T>(string groupName, object[] arguments, out GroupInfo group, out SourceInfo source)
         {
-            group =
-                _groups.Foremost(g =>
+            group = _groups
+                .Foremost(g =>
                     g.Name == groupName);
-
-            source = group.Sources.Foremost(
-                tr => typeof(T).IsAssignableFrom(tr.Type));
 
             if (group == null)
             { throw new GroupNotFoundException("The Group named was not found", groupName); }
+
+            source = group.Sources.Foremost(
+                tr => typeof(T).IsAssignableFrom(tr.Type));
 
             if (source == null)
             { throw new SourceNotFoundException("The source of type {0} was not found in the group: '{1}'", typeof(T).Name, group.Name); }

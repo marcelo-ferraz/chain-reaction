@@ -40,7 +40,7 @@ namespace ChainReaction.Origins
                         create: () => new AppConfigSourceInfo(Type.GetType(source.Type), source.Triggers));
                 }
 
-                foreach (var action in configGroup.Actions)
+                foreach (var action in configGroup.Handlers)
                 {
                     Type type = null;
                     try

@@ -1,10 +1,10 @@
 C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\obj\Debug\ChainReaction.Tests.csprojResolveAssemblyReference.cache
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\obj\Debug\HearkenContainer.Tests.pdb
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\HearkenContainer.Tests.dll.config
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\HearkenContainer.Tests.dll
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\HearkenContainer.Tests.pdb
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\HearkenContainer.dll
 C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\nunit.framework.dll
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\HearkenContainer.pdb
 C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\nunit.framework.xml
-C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\obj\Debug\HearkenContainer.Tests.dll
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\ChainReaction.dll
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\ChainReaction.pdb
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\ChainReaction.Tests.dll.config
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\ChainReaction.Tests.dll
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\bin\Debug\ChainReaction.Tests.pdb
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\obj\Debug\ChainReaction.Tests.dll
+C:\Users\mmeira\Documents\GitHub\chain-reaction\ChainReaction.Tests\obj\Debug\ChainReaction.Tests.pdb

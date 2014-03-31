@@ -64,7 +64,7 @@ namespace ChainReaction.AppConfig
         /// A set of functions
         /// </summary>
         [ConfigurationCollection(typeof(Element.Action))]
-        public class Handlers : CollectionOf.NamedElements<Element.Action>
+        public class Actions : CollectionOf.NamedElements<Element.Action>
         {
             public const string NodeName = "actions";
         }
@@ -84,7 +84,7 @@ namespace ChainReaction.AppConfig
         [ConfigurationCollection(typeof(Element.Handler))]
         public class Handlers : CollectionOf.TypedElements<Element.Handler>
         {
-            public const string NodeName = "actions";
+            public const string NodeName = "handlers";
         }
 
         /// <summary>

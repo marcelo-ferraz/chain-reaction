@@ -56,18 +56,20 @@ namespace ChainReaction.Model
 
                 if (@event == null) { continue; }
                 //{ throw new EventNotFoundException(function.EventName, function.Method.Name, action.GetType()); }
-
-                var @delegate = Delegate
-                    .CreateDelegate(@event.EventHandlerType, action, action.Method.Name);
                 
-                if(HaveSameSignature(@delegate, @event))
-                { @event.AddEventHandler(eventSource, @delegate); }
+                if(HaveSameSignature(@event, action))
+                {
+                    var @delegate = Delegate
+                        .CreateDelegate(@event.EventHandlerType, handler, action.Method.Name);
+                    
+                    @event.AddEventHandler(eventSource, @delegate); 
+                }
             }
         }     
    
-        private static bool HaveSameSignature(Delegate @delegate, EventInfo @event)
+        private static bool HaveSameSignature(EventInfo @event, ActionInfo action)
         {
-            if (@delegate.GetType().Equals(@event.EventHandlerType)) { return true; }
+            if (action.Method.GetType().Equals(@event.EventHandlerType)) { return true; }
 
             /*
              * TODO: perhaps it might need to be cached. But before running into any battle, verify if
@@ -77,11 +79,11 @@ namespace ChainReaction.Model
             var evHandlerInvoke = 
                 @event.EventHandlerType.GetMethod("Invoke");
 
-            if (!evHandlerInvoke.ReturnType.IsAssignableFrom(@delegate.Method.ReturnType))
+            if (!evHandlerInvoke.ReturnType.IsAssignableFrom(action.Method.ReturnType))
             { return false; }
 
             var delParams = 
-                @delegate.Method.GetParameters();
+                action.Method.GetParameters();
 
             var evParams =
                 evHandlerInvoke.GetParameters();

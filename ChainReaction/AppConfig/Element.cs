@@ -73,10 +73,10 @@ namespace ChainReaction.AppConfig
                 set { base["source"] = value; }
             }
 
-            [ConfigurationProperty(CollectionOf.Handlers.NodeName, IsKey = false)]
-            public CollectionOf.Handlers Actions
+            [ConfigurationProperty(CollectionOf.Actions.NodeName, IsKey = false)]
+            public CollectionOf.Actions Actions
             {
-                get { return ((CollectionOf.Handlers)(base[CollectionOf.Handlers.NodeName])); }
+                get { return ((CollectionOf.Actions)(base[CollectionOf.Actions.NodeName])); }
             }
         }
 
@@ -97,10 +97,10 @@ namespace ChainReaction.AppConfig
         /// </summary>
         public class Group : Element.Named
         {
-            [ConfigurationProperty(CollectionOf.Actions.NodeName, IsKey = false)]
-            public CollectionOf.Actions Actions
+            [ConfigurationProperty(CollectionOf.Handlers.NodeName, IsKey = false)]
+            public CollectionOf.Handlers Handlers
             {
-                get { return ((CollectionOf.Actions)(base[CollectionOf.Actions.NodeName])); }
+                get { return ((CollectionOf.Handlers)(base[CollectionOf.Handlers.NodeName])); }
             }
 
             [ConfigurationProperty(CollectionOf.Sources.NodeName, IsKey = false)]
