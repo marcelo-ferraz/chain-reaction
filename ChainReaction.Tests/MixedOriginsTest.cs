@@ -13,7 +13,7 @@ namespace ChainReaction.Tests
         [Test]
         public void AppCfgAndNotationOrigin()
         {
-            var container = Configure
+            var container = (SimpleChainReactionContainer)Configure
                 .This<SimpleChainReactionContainer>()
                 .With(InputFrom.AppConfig())
                 .With(InputFrom.Annotations(this.GetType().Assembly))
@@ -23,8 +23,8 @@ namespace ChainReaction.Tests
             Annotations.Logger notedLogger = null;
 
             var uselessProcess = container.Invoke<AppCfg.UselessProcessing>(
-                afterLoad: listener => 
-                    GetLoggers(ref appCfgLogger, ref notedLogger, listener));
+                afterLoadHandler: handler => 
+                    GetLoggers(ref appCfgLogger, ref notedLogger, handler));
 
             uselessProcess.Start();
 
@@ -52,8 +52,8 @@ namespace ChainReaction.Tests
             notedLogger = null;
 
             var moreUselessProcess = container.Invoke<Annotations.MoreUselessProcessing>(
-                    afterLoad: listener =>
-                        GetLoggers(ref appCfgLogger, ref notedLogger, listener));
+                    afterLoadHandler: handler =>
+                        GetLoggers(ref appCfgLogger, ref notedLogger, handler));
 
             moreUselessProcess.Start();
 

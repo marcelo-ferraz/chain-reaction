@@ -28,7 +28,7 @@ namespace ChainReaction.Tests
             Logger logger1 = null;
 
             var uselessProcess = _container.Invoke<UselessProcessing>(
-                afterLoad: listener => logger1 = listener as Logger);
+                afterLoadHandler: listener => logger1 = listener as Logger);
 
             uselessProcess.Start();
 
@@ -45,7 +45,7 @@ namespace ChainReaction.Tests
             Logger logger2 = null;
 
             var moreUselessProcess = _container.Invoke<MoreUselessProcessing>(
-                   afterLoad: listener => logger2 = listener as Logger);
+                   afterLoadHandler: listener => logger2 = listener as Logger);
             
             moreUselessProcess.Start();
 

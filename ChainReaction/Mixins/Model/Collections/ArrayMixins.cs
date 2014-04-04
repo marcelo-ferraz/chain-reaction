@@ -6,7 +6,7 @@ using System.Runtime;
 namespace ChainReaction.Mixins.Model.Collections
 {
     /// <summary>
-    /// Still quite messy and not as performatic as I'd initially wanted. Majorly works, but still looks quite crappy
+    /// Still quite messy and not as performatic as I'd initially wanted. Utterly works, but still looks quite crappy
     /// </summary>
     public static class ArrayMixins
     {
@@ -34,10 +34,6 @@ namespace ChainReaction.Mixins.Model.Collections
         {
             int index;
             
-            //return _trySZBinarySearch(self, 0, self.Length, criteria, out index) ?
-            //    self[index] :
-            //    default(T);
-
             index = Array.BinarySearch(self, criteria);
 
             return index > -1 ?

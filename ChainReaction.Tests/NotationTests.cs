@@ -24,13 +24,13 @@ namespace ChainReaction.Tests
         }
 
         [Test]
-        public void CorrectScenarioTest()
+        public void SimpleScenarioTest()
         {
             Logger logger1 = null;
 
             var uselessProcess = 
                 _container.Invoke<UselessProcessing>(
-                afterLoad: listener => 
+                afterLoadHandler: listener => 
                       logger1 = listener as Logger);
 
             uselessProcess.Start();
@@ -44,25 +44,71 @@ namespace ChainReaction.Tests
 
             Not.ContainsSubstring("Supposed To be listened two times, but not on appConfig.").Matches(log);
             Not.ContainsSubstring("Although it was put to be called, no one is supposed to be listening.").Matches(log);
+        }
 
-            Logger logger2 = null;
+        [Test]
+        public void TadMoreComplexScenarioTest()
+        {
+            Logger logger = null;
 
             var moreUselessProcess = 
                 _container.Invoke<MoreUselessProcessing>( 
-                afterLoad: listener => 
-                    logger2 = listener as Logger);
+                afterLoadHandler: listener => 
+                    logger = listener as Logger);
 
             moreUselessProcess.Start();
 
-            var log2 =
-                logger2.Builder.ToString();
+            var log =
+                logger.Builder.ToString();
 
             Not.ContainsSubstring("It was initiated!").Matches(log);
             Not.ContainsSubstring("I is in the middle...").Matches(log);
             Not.ContainsSubstring("The end!").Matches(log);
 
-            ContainsSubstring("Supposed To be listened two times, but not on appConfig.").Matches(log2);
-            Not.ContainsSubstring("Although it was put to be called, no one is supposed to be listening.").Matches(log2);
+            ContainsSubstring("Supposed To be listened two times, but not on appConfig.").Matches(log);
+            Not.ContainsSubstring("Although it was put to be called, no one is supposed to be listening.").Matches(log);
+        }
+        
+        [Test]
+        public void SimpleScenarioTestReusingLoggerInstance()
+        {
+            Logger logger = new Logger();
+
+            var moreUselessProcess =
+                _container.Invoke<MoreUselessProcessing>(handlers: logger);
+
+            moreUselessProcess.Start();
+
+            var log =
+                logger.Builder.ToString();
+
+            Not.ContainsSubstring("It was initiated!").Matches(log);
+            Not.ContainsSubstring("I is in the middle...").Matches(log);
+            Not.ContainsSubstring("The end!").Matches(log);
+
+            ContainsSubstring("Supposed To be listened two times, but not on appConfig.").Matches(log);
+            Not.ContainsSubstring("Although it was put to be called, no one is supposed to be listening.").Matches(log);
+        }
+
+        [Test]
+        public void TestReusingNonMappedType()
+        {
+            var notSuitableObject = new System.Collections.ArrayList();
+
+            var moreUselessProcess =
+                _container.Invoke<MoreUselessProcessing>(handlers: notSuitableObject);
+
+            moreUselessProcess.Start();
+
+            var log =
+                notSuitableObject.Builder.ToString();
+
+            Not.ContainsSubstring("It was initiated!").Matches(log);
+            Not.ContainsSubstring("I is in the middle...").Matches(log);
+            Not.ContainsSubstring("The end!").Matches(log);
+
+            ContainsSubstring("Supposed To be listened two times, but not on appConfig.").Matches(log);
+            Not.ContainsSubstring("Although it was put to be called, no one is supposed to be listening.").Matches(log);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace ChainReaction.Origins
         {
             GroupInfo group = null;
 
-            if (!container.TryResolve(groupName ?? string.Empty, out group))
+            if (!container.TryResolveGroup(groupName ?? string.Empty, out group))
             {
                 group =
                     new GroupInfo(groupName ?? string.Empty);
