@@ -60,7 +60,7 @@ namespace ChainReaction
             {
                 int i;
 
-                //If is not found, it will not listen
+                //If is not found, it will not listen to it
                 if (action.ListensTo != null && !action.ListensTo.BinarySearch(typeof(T), out i))
                 { continue; }
 

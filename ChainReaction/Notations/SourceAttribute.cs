@@ -11,6 +11,5 @@ namespace ChainReaction.Notations
     [AttributeUsage(AttributeTargets.Class)]
     public class SourceAttribute : EventRelatedAttribute
     {
-
     }
 }

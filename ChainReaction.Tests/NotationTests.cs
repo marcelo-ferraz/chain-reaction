@@ -99,16 +99,6 @@ namespace ChainReaction.Tests
                 _container.Invoke<MoreUselessProcessing>(handlers: notSuitableObject);
 
             moreUselessProcess.Start();
-
-            var log =
-                notSuitableObject.Builder.ToString();
-
-            Not.ContainsSubstring("It was initiated!").Matches(log);
-            Not.ContainsSubstring("I is in the middle...").Matches(log);
-            Not.ContainsSubstring("The end!").Matches(log);
-
-            ContainsSubstring("Supposed To be listened two times, but not on appConfig.").Matches(log);
-            Not.ContainsSubstring("Although it was put to be called, no one is supposed to be listening.").Matches(log);
         }
     }
 }

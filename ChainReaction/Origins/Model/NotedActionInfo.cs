@@ -1,11 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Reflection;
-using ChainReaction.Mixins.Model.Collections;
+﻿using ChainReaction.Mixins.Model.Collections;
 using ChainReaction.Model;
 using ChainReaction.Notations;
-using ChainReaction.Mixins.Model.Collections;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace ChainReaction.Origins.Model
 {
